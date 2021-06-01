@@ -1,0 +1,12 @@
+.navbar-expand-lg {
+  min-width: min-content;
+}
+.navbar-collapse {
+  justify-content: center;
+  min-width: min-content;
+}
+.active {
+  background-color: #1abc9c22;
+  border-radius: 10px;
+  border: 1px solid #1abc9c;
+}
