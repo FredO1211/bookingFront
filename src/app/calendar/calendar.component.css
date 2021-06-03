@@ -142,3 +142,11 @@ h1 {
 .page-link > span {
   color: #1abc9c;
 }
+aside {
+  position: absolute;
+  width: 15%;
+  min-width: 100px;
+  left: 2.5%;
+  top: 50%;
+  transform: translateY(-50%);
+}

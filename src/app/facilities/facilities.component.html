@@ -1,0 +1,10 @@
+<div class="list-group">
+  <a
+    *ngFor="let facility of facilities"
+    class="list-group-item list-group-item-action"
+    [routerLink]="['/calendar/facility/', facility.id]"
+    routerLinkActive="active"
+  >
+    {{ facility.name }}
+  </a>
+</div>
