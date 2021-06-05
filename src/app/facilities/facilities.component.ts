@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Injectable, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarService } from '../calendar/service/calendar.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'facilities',
@@ -13,15 +14,25 @@ import { CalendarService } from '../calendar/service/calendar.service';
 })
 export class FacilitiesComponent implements OnInit {
   facilities: Array<Facility> = new Array();
+  @Output()
+  emitter: EventEmitter<number> = new EventEmitter<number>();
   constructor(
     private http: HttpClient,
-    private calendarService: CalendarService
+    private router:Router
   ) {
     this.http
       .get<Array<Facility>>('http://localhost:8080/facilities')
       .subscribe((response) => {
         this.facilities = response;
+        if(this.facilities.length>0){
+          this.router.navigate(['calendar/facility/'+this.facilities[0].id]);
+          this.onFacilityChange(this.facilities[0].id);
+        }
       });
+  }
+
+  onFacilityChange(id:number){
+    this.emitter.emit(id);
   }
 
   public console() {

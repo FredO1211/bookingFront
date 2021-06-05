@@ -27,6 +27,14 @@ export class CalendarComponent implements OnInit {
     this.facility.console();
   }
 
+  onFacilityChange(id: number){
+    this.days = this.service.getDaysArray(id);
+  }
+
+  basic(event : Event){
+    console.log(event);
+  }
+
   loadNextMonth(): void {
     this.actualDate.setMonth(this.actualDate.getMonth() + 1);
     this.year = this.service.getYear(this.actualDate);
