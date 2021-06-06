@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FindGuestComponent,
     NotFoundComponent,
     FacilitiesComponent,
+    BookingDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,10 @@ import { ReactiveFormsModule } from '@angular/forms';
         {
           path: 'find_guest',
           component: FindGuestComponent,
+        },
+        {
+          path: 'bookings/:id',
+          component: BookingDetailsComponent, 
         },
         {
           path: '**',

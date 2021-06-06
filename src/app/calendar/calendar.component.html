@@ -32,6 +32,15 @@
       <span [ngClass]="{ 'otherMonth': !day.isCurrent() }">
         {{ day.getDay() }}
       </span>
+      <span *ngIf="day.getIsStartOfBooking()" class="start">
+        <a [routerLink]="day.getUrl()"></a>
+      </span>
+      <span *ngIf="day.getIsEndOfBooking()" class="end">
+        <a [routerLink]="day.getUrl()"></a>
+      </span>
+      <span *ngIf="day.getIsBelongsToReservation()" class="continue">
+        <a [routerLink]="day.getUrl()"></a>
+      </span>
     </div>
   </div>
 </div>

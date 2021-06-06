@@ -105,9 +105,23 @@ export class CalendarService {
   private replaceInCalendar(facilityId:number, daysArray:Array<Day>, bookings : SimplifiedBookingDTOList[]){
     if(bookings!=null){
       bookings.forEach(booking=>{
-        daysArray.find(day=>{
+        let startDay = daysArray.find(day=>{
           return day.getResponseFormatDate().toString()===booking.startingDate
-        })?.setCurrentMonth(false);
+        });
+        let endDay = daysArray.find(day=>{
+          return day.getResponseFormatDate().toString()===booking.endingDate
+        });
+        booking.otherDatesTaken.forEach(bookedDay=>{
+          let takenDay = daysArray.find(day=>{
+            return day.getResponseFormatDate().toString()===bookedDay;
+          });
+          takenDay?.setIsBelongsToReservation(true);
+          takenDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
+        })
+        startDay?.setIsStartOfBooking(true);
+        startDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
+        endDay?.setIsEndOfBooking(true);
+        endDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
       })
     }
   }
@@ -119,21 +133,28 @@ export class CalendarService {
   }
 
 }
-export class BlacklistData{
+class BlacklistData{
   constructor(public _embedded:_Embedded){
   }
 }
-export class _Embedded{
+class _Embedded{
   constructor(public simplifiedBookingDTOList : SimplifiedBookingDTOList[]){
   }
 }
-
-export class SimplifiedBookingDTOList{
+class Self{
+  constructor(public href:string){
+  }
+}
+class _Link{
+  constructor(public self:Self){
+  }
+}
+class SimplifiedBookingDTOList{
   constructor(
     public startingDate : string,
     public endingDate : string,
     public otherDatesTaken : Array<string>,
-    public link:string
+    public _links:_Link
   ){}
 }
 
@@ -161,6 +182,18 @@ export class Day {
 
   public isCurrent() {
     return this.currentMonth;
+  }
+  public getIsStartOfBooking(){
+    return this.isStartOfBooking;
+  }
+  public getIsEndOfBooking(){
+    return this.isEndOfBooking;
+  }
+  public getIsBelongsToReservation(){
+    return this.isBelongsToReservation;
+  }
+  public getUrl(){
+    return this.bookingUrl;
   }
 
   public setIsStartOfBooking(value:boolean){
