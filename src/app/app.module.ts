@@ -11,8 +11,9 @@ import { FindGuestComponent } from './find-guest/find-guest.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { FacilityFormComponent } from './facility-form/facility-form.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,14 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
     NotFoundComponent,
     FacilitiesComponent,
     BookingDetailsComponent,
+    FacilityFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(
       [
         {
@@ -43,6 +46,10 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
           ],
         },
         {
+          path: 'create_facility',
+          component: FacilityFormComponent,
+        },
+        {
           path: 'add_booking',
           component: AddBookingFormComponent,
         },
@@ -52,7 +59,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
         },
         {
           path: 'bookings/:id',
-          component: BookingDetailsComponent, 
+          component: BookingDetailsComponent,
         },
         {
           path: '**',

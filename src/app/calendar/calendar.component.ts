@@ -12,7 +12,7 @@ export class CalendarComponent implements OnInit {
   year: string = '1970';
   days: Array<Day> = new Array(42);
   actualDate: Date = new Date('01-01-1970');
-  private facilityId:number=0;
+  private facilityId: number = 0;
 
   constructor(
     private service: CalendarService,
@@ -27,12 +27,12 @@ export class CalendarComponent implements OnInit {
     this.facility.console();
   }
 
-  onFacilityChange(id: number){
-    this.facilityId=id;
+  onFacilityChange(id: number) {
+    this.facilityId = id;
     this.days = this.service.getDaysArray(id, this.actualDate);
   }
 
-  basic(event : Event){
+  basic(event: Event) {
     console.log(event);
   }
 

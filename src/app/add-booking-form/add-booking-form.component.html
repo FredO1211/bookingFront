@@ -1,1 +1,63 @@
-<p>add-booking-form works!</p>
+<div class="form-container facilities">
+  <h1 class="form__header">Wybierz obiekt</h1>
+  <input
+    list=""
+    name="option"
+    class="form__text facilities__datalist-result"
+    autocomplete="off"
+  />
+  <datalist class="facilities__datalist datalist"></datalist>
+</div>
+<div class="form-container booking hidden">
+  <h1 class="form__header">Wybierz termin</h1>
+  <p class="form__desc">Data przyjazdu:</p>
+  <input type="date" id="startOfBooking" class="form__date" />
+  <p class="form__desc">Data wyjazdu:</p>
+  <input type="date" id="endOfBooking" class="form__date" />
+  <p class="form__desc">Ilość gości:</p>
+  <input type="number" id="countOfGuests" value="0" class="form__number" />
+  <p class="form__desc">Dodatkowe informacje:</p>
+  <textarea name="Text1" id="description" cols="40" rows="4"></textarea>
+</div>
+<div class="form-container facilities hidden">
+  <h1 class="form__header">Uzupełnij dane o gościu</h1>
+  <p class="form__desc">Imię i nazwisko:</p>
+  <input type="text" id="name" class="form__text" />
+  <p class="form__desc">e-mail:</p>
+  <input type="text" id="email" class="form__text" />
+  <p class="form__desc">Numer telefonu:</p>
+  <input type="text" id="phoneNumber" class="form__text" />
+  <p class="form__desc">Dodatkowe informacje:</p>
+  <textarea
+    name="Text1"
+    id="additionalInformation"
+    cols="40"
+    rows="4"
+  ></textarea>
+</div>
+<div class="form-container payment hidden">
+  <h1 class="form__header">Płatność</h1>
+  <p class="form__desc">Cena za dobę:</p>
+  <input type="number" id="costPerNight" class="form__number" />
+  <p class="form__desc">Rabat:</p>
+  <input type="number" id="discount" class="form__number" value="0" />
+  <p class="form__desc">Wysokość zaliczki:</p>
+  <input type="number" id="advanceSize" class="form__number" />
+  <p class="form__desc">Kod płatności:</p>
+  <input type="text" id="code" class="form__text" />
+  <p class="form__desc">Termin płatności:</p>
+  <input type="date" id="deadlineForPayment" class="form__date" />
+</div>
+<div class="progress-container">
+  <div class="progress__item"><i class="fas fa-house-user"></i></div>
+  <div class="progress__line"></div>
+  <div class="progress__item undone"><i class="far fa-calendar-alt"></i></div>
+  <div class="progress__line"></div>
+  <div class="progress__item undone"><i class="fas fa-user"></i></div>
+  <div class="progress__line"></div>
+  <div class="progress__item undone"><i class="fas fa-money-bill"></i></div>
+  <div class="buttons-container progress__container">
+    <button class="container__button unactive previous">Poprzedni</button>
+    <button class="container__button next">Następny</button>
+  </div>
+</div>

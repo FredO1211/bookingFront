@@ -1,0 +1,19 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nazwa obiektu</label>
+    <input ngModel name="name" type="text" class="form-control" id="name" />
+  </div>
+  <div class="mb-3">
+    <label for="basicRentAmount" class="form-label">
+      Podstawowy koszt najmu
+    </label>
+    <input
+      ngModel
+      name="basicRentAmount"
+      type="number"
+      class="form-control"
+      id="basicRentAmount"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>
