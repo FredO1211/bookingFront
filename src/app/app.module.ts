@@ -14,6 +14,7 @@ import { FacilitiesComponent } from './facilities/facilities.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { FacilityFormComponent } from './facility-form/facility-form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FacilityFormComponent } from './facility-form/facility-form.component';
     FacilitiesComponent,
     BookingDetailsComponent,
     FacilityFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

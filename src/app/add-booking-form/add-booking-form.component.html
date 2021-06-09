@@ -1,63 +1,238 @@
-<div class="form-container facilities">
-  <h1 class="form__header">Wybierz obiekt</h1>
-  <input
-    list=""
-    name="option"
-    class="form__text facilities__datalist-result"
-    autocomplete="off"
-  />
-  <datalist class="facilities__datalist datalist"></datalist>
-</div>
-<div class="form-container booking hidden">
-  <h1 class="form__header">Wybierz termin</h1>
-  <p class="form__desc">Data przyjazdu:</p>
-  <input type="date" id="startOfBooking" class="form__date" />
-  <p class="form__desc">Data wyjazdu:</p>
-  <input type="date" id="endOfBooking" class="form__date" />
-  <p class="form__desc">Ilość gości:</p>
-  <input type="number" id="countOfGuests" value="0" class="form__number" />
-  <p class="form__desc">Dodatkowe informacje:</p>
-  <textarea name="Text1" id="description" cols="40" rows="4"></textarea>
-</div>
-<div class="form-container facilities hidden">
-  <h1 class="form__header">Uzupełnij dane o gościu</h1>
-  <p class="form__desc">Imię i nazwisko:</p>
-  <input type="text" id="name" class="form__text" />
-  <p class="form__desc">e-mail:</p>
-  <input type="text" id="email" class="form__text" />
-  <p class="form__desc">Numer telefonu:</p>
-  <input type="text" id="phoneNumber" class="form__text" />
-  <p class="form__desc">Dodatkowe informacje:</p>
-  <textarea
-    name="Text1"
-    id="additionalInformation"
-    cols="40"
-    rows="4"
-  ></textarea>
-</div>
-<div class="form-container payment hidden">
-  <h1 class="form__header">Płatność</h1>
-  <p class="form__desc">Cena za dobę:</p>
-  <input type="number" id="costPerNight" class="form__number" />
-  <p class="form__desc">Rabat:</p>
-  <input type="number" id="discount" class="form__number" value="0" />
-  <p class="form__desc">Wysokość zaliczki:</p>
-  <input type="number" id="advanceSize" class="form__number" />
-  <p class="form__desc">Kod płatności:</p>
-  <input type="text" id="code" class="form__text" />
-  <p class="form__desc">Termin płatności:</p>
-  <input type="date" id="deadlineForPayment" class="form__date" />
-</div>
+<form #f="ngForm">
+  <div *ngIf="getFormIndex() == 1" class="form-container facilities">
+    <h3 class="form__header">Wybierz obiekt</h3>
+    <select
+      [(ngModel)]="booking.facility.id"
+      name="id"
+      class="form__text facilities__datalist-result"
+    >
+      <option></option>
+      <option *ngFor="let facility of facilities" [value]="facility.id">
+        {{ facility.name }}
+      </option>
+    </select>
+    <datalist class="facilities__datalist datalist"></datalist>
+  </div>
+  <div *ngIf="getFormIndex() == 2" class="form-group form-container booking">
+    <h3 class="form__header">Wybierz termin</h3>
+    <label for="startOfBooking" class="form__desc">Data przyjazdu:</label>
+    <input
+      [(ngModel)]="booking.startOfBooking"
+      name="startOfBooking"
+      type="date"
+      id="startOfBooking"
+      class="form__date"
+    />
+    <label for="endOfBooking" class="form__desc">Data wyjazdu:</label>
+    <input
+      [(ngModel)]="booking.endOfBooking"
+      name="endOfBooking"
+      type="date"
+      id="endOfBooking"
+      class="form__date"
+    />
+    <p class="form__desc">Ilość gości:</p>
+    <input
+      [(ngModel)]="booking.countOfGuests"
+      name="countOfGuests"
+      type="number"
+      id="countOfGuests"
+      class="form__number"
+    />
+    <label for="description" class="form__desc">Dodatkowe informacje:</label>
+    <textarea
+      [(ngModel)]="booking.description"
+      name="description"
+      id="description"
+      cols="40"
+      rows="4"
+    ></textarea>
+  </div>
+  <div *ngIf="getFormIndex() == 3" class="form-container facilities">
+    <h3 class="form__header">Uzupełnij dane o gościu</h3>
+    <label for="name" class="form__desc">Imię i nazwisko:</label>
+    <input
+      [(ngModel)]="booking.guest.name"
+      name="name"
+      type="text"
+      id="name"
+      class="form__text"
+    />
+    <label for="email" class="form__desc">e-mail:</label>
+    <input
+      [(ngModel)]="booking.guest.email"
+      name="email"
+      type="text"
+      id="email"
+      class="form__text"
+    />
+    <label for="phoneNumber" class="form__desc">Numer telefonu:</label>
+    <input
+      [(ngModel)]="booking.guest.phoneNumber"
+      name="phoneNumber"
+      type="text"
+      id="phoneNumber"
+      class="form__text"
+    />
+    <label for="additionalInformation" class="form__desc"
+      >Dodatkowe informacje:</label
+    >
+    <textarea
+      [(ngModel)]="booking.guest.additionalInformation"
+      name="additionalInformation"
+      id="additionalInformation"
+      cols="40"
+      rows="4"
+    ></textarea>
+  </div>
+  <div *ngIf="getFormIndex() == 4" class="form-container payment">
+    <h3 class="form__header">Płatność</h3>
+    <label for="costPerNight" class="form__desc">Cena za dobę:</label>
+    <input
+      [(ngModel)]="booking.payment.costPerNight"
+      name="costPerNight"
+      type="number"
+      id="costPerNight"
+      class="form__number"
+    />
+    <label for="discount" class="form__desc">Rabat:</label>
+    <input
+      [(ngModel)]="booking.payment.discount"
+      name="discount"
+      type="number"
+      id="discount"
+      class="form__number"
+      value="0"
+    />
+    <label for="advanceSize" class="form__desc">Wysokość zaliczki:</label>
+    <input
+      [(ngModel)]="booking.payment.advanceSize"
+      name="advanceSize"
+      type="number"
+      id="advanceSize"
+      class="form__number"
+    />
+    <label for="code" class="form__desc">Kod płatności:</label>
+    <input
+      [(ngModel)]="booking.payment.code"
+      name="code"
+      type="text"
+      id="code"
+      class="form__text"
+    />
+    <label for="deadlineForPayment" class="form__desc">Termin płatności:</label>
+    <input
+      [(ngModel)]="booking.payment.deadlineForPayment"
+      name="deadlineForPayment"
+      type="date"
+      id="deadlineForPayment"
+      class="form__date"
+    />
+  </div>
+</form>
 <div class="progress-container">
-  <div class="progress__item"><i class="fas fa-house-user"></i></div>
-  <div class="progress__line"></div>
-  <div class="progress__item undone"><i class="far fa-calendar-alt"></i></div>
-  <div class="progress__line"></div>
-  <div class="progress__item undone"><i class="fas fa-user"></i></div>
-  <div class="progress__line"></div>
-  <div class="progress__item undone"><i class="fas fa-money-bill"></i></div>
+  <div
+    [class.done]="getFormIndex() > 1"
+    [class.undone]="getFormIndex() < 1"
+    class="progress__item"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-house"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
+      />
+    </svg>
+  </div>
+  <div [class.done]="getFormIndex() > 1" class="progress__line"></div>
+  <div
+    [class.done]="getFormIndex() > 2"
+    [class.undone]="getFormIndex() < 2"
+    class="progress__item"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-calendar"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+      />
+    </svg>
+  </div>
+  <div [class.done]="getFormIndex() > 2" class="progress__line"></div>
+  <div
+    [class.done]="getFormIndex() > 3"
+    [class.undone]="getFormIndex() < 3"
+    class="progress__item"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-person"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+      />
+    </svg>
+  </div>
+  <div [class.done]="getFormIndex() > 3" class="progress__line"></div>
+  <div
+    [class.done]="getFormIndex() > 4"
+    [class.undone]="getFormIndex() < 4"
+    class="progress__item undone"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-cash"
+      viewBox="0 0 16 16"
+    >
+      <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+      <path
+        d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"
+      />
+    </svg>
+  </div>
   <div class="buttons-container progress__container">
-    <button class="container__button unactive previous">Poprzedni</button>
-    <button class="container__button next">Następny</button>
+    <button
+      [class.unactive]="getFormIndex() === 1"
+      (click)="onPreviousClick()"
+      class="container__button previous"
+    >
+      Poprzedni
+    </button>
+    <button
+      *ngIf="getFormIndex() < 4"
+      (click)="onNextClick(f)"
+      class="container__button next"
+    >
+      Następny
+    </button>
+    <button
+      (click)="onSubmitClick()"
+      *ngIf="getFormIndex() === 4"
+      class="container__button next done"
+    >
+      Zapisz
+    </button>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'booking-details',
@@ -23,9 +24,9 @@ export class BookingDetailsComponent implements OnInit {
   public advancedSize = '';
   public paymentCode = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     http
-      .get<BlacklistData>('http://localhost:8080/bookings/1')
+      .get<BlacklistData>('http://localhost:8080' + router.url)
       .subscribe((response) => {
         this.term = `${response.startOfBooking.replaceAll(
           '-',

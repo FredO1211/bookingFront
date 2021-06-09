@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, OnInit, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CalendarService } from '../calendar/service/calendar.service';
-import { async } from '@angular/core/testing';
+import {
+  Component,
+  Injectable,
+  OnInit,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'facilities',
@@ -16,27 +20,23 @@ export class FacilitiesComponent implements OnInit {
   facilities: Array<Facility> = new Array();
   @Output()
   emitter: EventEmitter<number> = new EventEmitter<number>();
-  constructor(
-    private http: HttpClient,
-    private router:Router
-  ) {
+  constructor(private http: HttpClient, private router: Router) {
     this.http
       .get<Array<Facility>>('http://localhost:8080/facilities')
       .subscribe((response) => {
         this.facilities = response;
-        if(this.facilities.length>0){
-          this.router.navigate(['calendar/facility/'+this.facilities[0].id]);
+        if (this.facilities.length > 0) {
+          this.router.navigate(['calendar/facility/' + this.facilities[0].id]);
           this.onFacilityChange(this.facilities[0].id);
         }
       });
   }
 
-  onFacilityChange(id:number){
+  onFacilityChange(id: number) {
     this.emitter.emit(id);
   }
 
-  public console() {
-  }
+  public console() {}
 
   ngOnInit(): void {}
 }
