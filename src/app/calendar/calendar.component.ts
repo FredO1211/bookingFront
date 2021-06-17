@@ -45,8 +45,4 @@ export class CalendarComponent implements OnInit {
     this.month = this.service.getMonth(this.actualDate);
     this.days = this.service.getDaysArray(this.facilityId, this.actualDate);
   }
-
-  doSth() {
-    console.log(this.service.getLastDateOnPage());
-  }
 }

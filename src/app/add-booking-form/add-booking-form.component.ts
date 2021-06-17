@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Facility } from 'app/facilities/facilities.component';
 
 @Component({
@@ -12,12 +13,19 @@ export class AddBookingFormComponent implements OnInit {
   public facilities: Array<Facility> = new Array();
   public formIndex: number = 1;
   public booking: Booking = new Booking();
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.http
       .get<Array<Facility>>('http://localhost:8080/facilities')
-      .subscribe((response) => {
-        this.facilities = response;
-      });
+      .subscribe(
+        (response) => {
+          this.facilities = response;
+        },
+        (err) => {
+          if (err.status === 401) {
+            this.router.navigate(['/login']);
+          }
+        }
+      );
   }
 
   onSubmitClick() {
@@ -25,8 +33,11 @@ export class AddBookingFormComponent implements OnInit {
       (response) => {
         console.log(response);
       },
-      (error) => {
-        console.log(error);
+      (err) => {
+        console.log(err);
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        }
       }
     );
   }

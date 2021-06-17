@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, NgForm, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'facility-form',
@@ -8,7 +9,7 @@ import { AbstractControl, NgForm, ValidationErrors } from '@angular/forms';
   styleUrls: ['./facility-form.component.css'],
 })
 export class FacilityFormComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -23,6 +24,9 @@ export class FacilityFormComponent implements OnInit {
         (error) => {
           if (error.status == 400) {
             window.alert(error.error.message);
+          }
+          if (error.status == 401) {
+            this.router.navigate(['/login']);
           }
         }
       );

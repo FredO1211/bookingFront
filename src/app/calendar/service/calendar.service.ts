@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class CalendarService {
     'GRUDZIEŃ',
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private resetTime(dateToReset: Date): Date {
     dateToReset.setHours(0);
@@ -74,13 +75,28 @@ export class CalendarService {
     return source.getFullYear().toString();
   }
 
-  getBookingList(date: Date, facilityId: number, daysArray: Array<Day>){
-    const bookingList =new Array<SimplifiedBookingDTOList>(); 
+  getBookingList(date: Date, facilityId: number, daysArray: Array<Day>) {
+    const bookingList = new Array<SimplifiedBookingDTOList>();
     this.http
-      .get<BlacklistData>(`http://localhost:8080/bookings/marks?date=${this.convertDateIntoMounthAndYear(date)}&facility_id=${facilityId}`)
-      .subscribe((response) => {
-        this.replaceInCalendar(facilityId, daysArray, response._embedded?.simplifiedBookingDTOList);
-      });
+      .get<BlacklistData>(
+        `http://localhost:8080/bookings/marks?date=${this.convertDateIntoMounthAndYear(
+          date
+        )}&facility_id=${facilityId}`
+      )
+      .subscribe(
+        (response) => {
+          this.replaceInCalendar(
+            facilityId,
+            daysArray,
+            response._embedded?.simplifiedBookingDTOList
+          );
+        },
+        (err) => {
+          if (err.status === 401) {
+            // this.router.navigate(['/login']);
+          }
+        }
+      );
   }
 
   getDaysArray(facilityId: number, date?: Date): Array<Day> {
@@ -97,65 +113,72 @@ export class CalendarService {
       );
     }
 
-    this.getBookingList(actualDate, facilityId , array);
+    this.getBookingList(actualDate, facilityId, array);
 
     return array;
   }
 
-  private replaceInCalendar(facilityId:number, daysArray:Array<Day>, bookings : SimplifiedBookingDTOList[]){
-    if(bookings!=null){
-      bookings.forEach(booking=>{
-        let startDay = daysArray.find(day=>{
-          return day.getResponseFormatDate().toString()===booking.startingDate
+  private replaceInCalendar(
+    facilityId: number,
+    daysArray: Array<Day>,
+    bookings: SimplifiedBookingDTOList[]
+  ) {
+    if (bookings != null) {
+      bookings.forEach((booking) => {
+        let startDay = daysArray.find((day) => {
+          return (
+            day.getResponseFormatDate().toString() === booking.startingDate
+          );
         });
-        let endDay = daysArray.find(day=>{
-          return day.getResponseFormatDate().toString()===booking.endingDate
+        let endDay = daysArray.find((day) => {
+          return day.getResponseFormatDate().toString() === booking.endingDate;
         });
-        booking.otherDatesTaken.forEach(bookedDay=>{
-          let takenDay = daysArray.find(day=>{
-            return day.getResponseFormatDate().toString()===bookedDay;
+        booking.otherDatesTaken.forEach((bookedDay) => {
+          let takenDay = daysArray.find((day) => {
+            return day.getResponseFormatDate().toString() === bookedDay;
           });
           takenDay?.setIsBelongsToReservation(true);
-          takenDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
-        })
+          takenDay?.setBookingUrl(
+            booking._links.self.href.replace('http://localhost:8080', '')
+          );
+        });
         startDay?.setIsStartOfBooking(true);
-        startDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
+        startDay?.setBookingUrl(
+          booking._links.self.href.replace('http://localhost:8080', '')
+        );
         endDay?.setIsEndOfBooking(true);
-        endDay?.setBookingUrl(booking._links.self.href.replace("http://localhost:8080",""));
-      })
+        endDay?.setBookingUrl(
+          booking._links.self.href.replace('http://localhost:8080', '')
+        );
+      });
     }
   }
 
-  private convertDateIntoMounthAndYear(dateToConvert:Date){
-    const actualMonth = dateToConvert.getMonth()+1;
-    const month = actualMonth>9?`${actualMonth}`:`0${actualMonth}`
-    return `${dateToConvert.getFullYear()}-${month}`
-  }
-
-}
-class BlacklistData{
-  constructor(public _embedded:_Embedded){
+  private convertDateIntoMounthAndYear(dateToConvert: Date) {
+    const actualMonth = dateToConvert.getMonth() + 1;
+    const month = actualMonth > 9 ? `${actualMonth}` : `0${actualMonth}`;
+    return `${dateToConvert.getFullYear()}-${month}`;
   }
 }
-class _Embedded{
-  constructor(public simplifiedBookingDTOList : SimplifiedBookingDTOList[]){
-  }
+class BlacklistData {
+  constructor(public _embedded: _Embedded) {}
 }
-class Self{
-  constructor(public href:string){
-  }
+class _Embedded {
+  constructor(public simplifiedBookingDTOList: SimplifiedBookingDTOList[]) {}
 }
-class _Link{
-  constructor(public self:Self){
-  }
+class Self {
+  constructor(public href: string) {}
 }
-class SimplifiedBookingDTOList{
+class _Link {
+  constructor(public self: Self) {}
+}
+class SimplifiedBookingDTOList {
   constructor(
-    public startingDate : string,
-    public endingDate : string,
-    public otherDatesTaken : Array<string>,
-    public _links:_Link
-  ){}
+    public startingDate: string,
+    public endingDate: string,
+    public otherDatesTaken: Array<string>,
+    public _links: _Link
+  ) {}
 }
 
 export class Day {
@@ -172,47 +195,47 @@ export class Day {
     return this.currentDate.getDate();
   }
 
-  public getResponseFormatDate() : string{
-    const actualMonth = this.currentDate.getMonth()+1;
-    const month = (actualMonth>9)?`${actualMonth}`:`0${actualMonth}`
-    const day = (this.getDay()>9)?`${this.getDay()}`:`0${this.getDay()}`
+  public getResponseFormatDate(): string {
+    const actualMonth = this.currentDate.getMonth() + 1;
+    const month = actualMonth > 9 ? `${actualMonth}` : `0${actualMonth}`;
+    const day = this.getDay() > 9 ? `${this.getDay()}` : `0${this.getDay()}`;
 
-    return  `${this.currentDate.getFullYear()}-${month}-${day}`;
+    return `${this.currentDate.getFullYear()}-${month}-${day}`;
   }
 
   public isCurrent() {
     return this.currentMonth;
   }
-  public getIsStartOfBooking(){
+  public getIsStartOfBooking() {
     return this.isStartOfBooking;
   }
-  public getIsEndOfBooking(){
+  public getIsEndOfBooking() {
     return this.isEndOfBooking;
   }
-  public getIsBelongsToReservation(){
+  public getIsBelongsToReservation() {
     return this.isBelongsToReservation;
   }
-  public getUrl(){
+  public getUrl() {
     return this.bookingUrl;
   }
 
-  public setIsStartOfBooking(value:boolean){
-    this.isStartOfBooking=value;
+  public setIsStartOfBooking(value: boolean) {
+    this.isStartOfBooking = value;
   }
 
-  public setIsEndOfBooking(value : boolean){
-    this.isEndOfBooking=value;
+  public setIsEndOfBooking(value: boolean) {
+    this.isEndOfBooking = value;
   }
 
-  public setIsBelongsToReservation(value : boolean){
-    this.isBelongsToReservation=value;
+  public setIsBelongsToReservation(value: boolean) {
+    this.isBelongsToReservation = value;
   }
 
-  public setBookingUrl(value : string){
-    this.bookingUrl=value;
+  public setBookingUrl(value: string) {
+    this.bookingUrl = value;
   }
 
-  public setCurrentMonth(value : boolean){
-    this.currentMonth=value;
+  public setCurrentMonth(value: boolean) {
+    this.currentMonth = value;
   }
 }

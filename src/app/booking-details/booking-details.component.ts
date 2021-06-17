@@ -25,9 +25,8 @@ export class BookingDetailsComponent implements OnInit {
   public paymentCode = '';
 
   constructor(private http: HttpClient, private router: Router) {
-    http
-      .get<BlacklistData>('http://localhost:8080' + router.url)
-      .subscribe((response) => {
+    http.get<BlacklistData>('http://localhost:8080' + router.url).subscribe(
+      (response) => {
         this.term = `${response.startOfBooking.replaceAll(
           '-',
           '.'
@@ -56,7 +55,13 @@ export class BookingDetailsComponent implements OnInit {
         this.costPerNight = response.payment.costPerNight.toString();
         this.advancedSize = response.payment.advanceSize.toString();
         this.paymentCode = response.payment.code;
-      });
+      },
+      (err) => {
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        }
+      }
+    );
   }
   private resetTime(dateToReset: Date): Date {
     dateToReset.setHours(0);

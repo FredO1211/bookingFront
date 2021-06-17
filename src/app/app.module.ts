@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { FacilityFormComponent } from './facility-form/facility-form.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './login/service/auth.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,10 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     RouterModule.forRoot(
       [
+        {
+          path: 'login',
+          component: LoginComponent,
+        },
         {
           path: 'calendar',
           component: CalendarComponent,
@@ -73,7 +79,10 @@ import { LoginComponent } from './login/login.component';
       }
     ),
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import {
   Component,
   Injectable,
@@ -18,18 +18,27 @@ import { Router } from '@angular/router';
 })
 export class FacilitiesComponent implements OnInit {
   facilities: Array<Facility> = new Array();
+
   @Output()
   emitter: EventEmitter<number> = new EventEmitter<number>();
   constructor(private http: HttpClient, private router: Router) {
+    let request = new HttpRequest('GET', 'http://localhost:8080/facilities');
     this.http
       .get<Array<Facility>>('http://localhost:8080/facilities')
-      .subscribe((response) => {
-        this.facilities = response;
-        if (this.facilities.length > 0) {
-          this.router.navigate(['calendar/facility/' + this.facilities[0].id]);
-          this.onFacilityChange(this.facilities[0].id);
+      .subscribe(
+        (response) => {
+          this.facilities = response;
+          if (this.facilities.length > 0) {
+            this.router.navigate([
+              'calendar/facility/' + this.facilities[0].id,
+            ]);
+            this.onFacilityChange(this.facilities[0].id);
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-      });
+      );
   }
 
   onFacilityChange(id: number) {

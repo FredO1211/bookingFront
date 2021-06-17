@@ -5,8 +5,26 @@
   justify-content: center;
   min-width: min-content;
 }
+.nav-item {
+  border-radius: 10px;
+  margin: 5px;
+}
+.nav-item:hover {
+  background-color: #00000022 !important;
+}
 .active {
   background-color: #1abc9c22;
   border-radius: 10px;
   border: 1px solid #1abc9c;
+}
+.logout {
+  background-color: #bc1a3a;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.logout:hover {
+  background-color: #bc1a3acc !important;
+}
+.color_white {
+  color: white !important;
 }
