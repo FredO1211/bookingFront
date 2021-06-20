@@ -25,7 +25,7 @@ export class CalendarComponent implements OnInit {
 
   onFacilityChange(id: number) {
     this.facilityId = id;
-    this.days = this.service.getDaysArray(id);
+    this.days = this.service.getDaysArray(id, this.actualDate);
   }
 
   basic(event: Event) {

@@ -77,6 +77,7 @@ export class CalendarService {
 
   getBookingList(date: Date, facilityId: number, daysArray: Array<Day>) {
     const bookingList = new Array<SimplifiedBookingDTOList>();
+    console.log(`http://localhost:8080/bookings/marks?date=${this.convertDateIntoMounthAndYear(date)}&facility_id=${facilityId}`);
     this.http
       .get<BlacklistData>(
         `http://localhost:8080/bookings/marks?date=${this.convertDateIntoMounthAndYear(
