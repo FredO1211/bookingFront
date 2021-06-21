@@ -13,6 +13,7 @@ export class AddBookingFormComponent implements OnInit {
   public facilities: Array<Facility> = new Array();
   public formIndex: number = 1;
   public booking: Booking = new Booking();
+  public isDateUnavailable = false;
   constructor(private http: HttpClient, private router: Router) {
     this.http
       .get<Array<Facility>>('http://localhost:8080/facilities')
@@ -49,15 +50,29 @@ export class AddBookingFormComponent implements OnInit {
   onNextClick(f: NgForm) {
     switch (this.formIndex) {
       case 1:
+        this.formIndex++;
         break;
       case 2:
+        this.http
+          .get<boolean>(
+            `http://localhost:8080/bookings/available?facilityId=${this.booking.facility.id}&start=${this.booking.startOfBooking}&end=${this.booking.endOfBooking}`
+          )
+          .subscribe((response) => {
+            if (response) {
+              this.isDateUnavailable = false;
+              this.formIndex++;
+            } else {
+              this.isDateUnavailable = true;
+            }
+          });
         break;
       case 3:
+        this.formIndex++;
         break;
       case 4:
+        this.formIndex++;
         break;
     }
-    this.formIndex++;
   }
 
   onPreviousClick() {

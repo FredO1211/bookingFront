@@ -14,6 +14,9 @@
     <datalist class="facilities__datalist datalist"></datalist>
   </div>
   <div *ngIf="getFormIndex() == 2" class="form-group form-container booking">
+    <div *ngIf="isDateUnavailable" class="alert alert-danger">
+      Wybrana data jest zajęta!
+    </div>
     <h3 class="form__header">Wybierz termin</h3>
     <label for="startOfBooking" class="form__desc">Data przyjazdu:</label>
     <input
