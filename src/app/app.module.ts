@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './modules/login/login.module';
 import { LoginPageComponent } from './modules/login/page/login-page/login-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes : Routes = [
   { path:'login', component: LoginPageComponent }
@@ -19,7 +20,8 @@ const routes : Routes = [
     BrowserModule,
     LoginModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
