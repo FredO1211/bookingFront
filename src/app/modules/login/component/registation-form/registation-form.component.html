@@ -1,7 +1,7 @@
 <div class="content_container">
   <h1>Zarejestruj się</h1>
   <div class="login_form_container">
-    <form>
+    <form #f>
       <div class="form-group">
         <label for="exampleInputEmail1">Login:</label>
         <input
@@ -15,12 +15,15 @@
       <div class="form-group">
         <label for="password">Hasło:</label>
         <input
+          [(ngModel)]="password"
+          name="password"
           type="password"
           class="form-control"
           id="password"
           placeholder="Hasło"
         />
       </div>
+
       <div class="form-group">
         <label for="re-password">Powtórz hasło:</label>
         <input
@@ -30,6 +33,8 @@
           placeholder="Powtórz hasło"
         />
       </div>
+      <password-strength-meter [password]="password"></password-strength-meter>
+
       <button type="submit" class="btn btn-primary btn-submit">
         Utwórz konto
       </button>

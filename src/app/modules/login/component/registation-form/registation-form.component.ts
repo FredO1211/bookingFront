@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 @Component({
   selector: 'registation-form',

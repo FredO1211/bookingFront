@@ -3,6 +3,8 @@ import { LoginFormComponent } from './component/login-form/login-form.component'
 import { WelcomeComponent } from './component/welcome/welcome.component';
 import { RegistationFormComponent } from './component/registation-form/registation-form.component';
 import { NgModule } from '@angular/core';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,6 +12,11 @@ import { NgModule } from '@angular/core';
     LoginFormComponent,
     WelcomeComponent,
     RegistationFormComponent,
+  ],
+  imports: [
+    PasswordStrengthMeterModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [LoginFormComponent],
 })
