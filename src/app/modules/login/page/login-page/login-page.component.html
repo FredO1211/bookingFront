@@ -1,7 +1,18 @@
 <div class="login_page_container">
   <div class="content_container">
     <welcome class="welcome_message_container"></welcome>
-    <!-- <login-form class="login_form_container"> </login-form> -->
-    <registation-form class="login_form_container"></registation-form>
+    <div class="content_scroller">
+      <login-form
+        class="form_container login_form_container"
+        [class]="!loginVisible ? 'left__negative_100_pr' : ''"
+        (toggle)="toggleForm()"
+      >
+      </login-form>
+      <registation-form
+        class="form_container registration_form_container"
+        [class]="!loginVisible ? 'left__zero_pr' : ''"
+        (toggle)="toggleForm()"
+      ></registation-form>
+    </div>
   </div>
 </div>

@@ -27,13 +27,31 @@
 }
 
 .login_form_container {
+  left: 0;
+}
+
+.registration_form_container {
+  left: 100%;
+}
+
+.form_container {
+  border: 1 black solid;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  color: black;
+  transition: 300ms ease;
+}
+
+.content_scroller {
   position: absolute;
   right: 0;
   top: 0;
   height: 100%;
   width: 40%;
-  background-color: white;
-  color: black;
+  overflow: hidden;
 }
 
 .welcome_message_container {
@@ -42,4 +60,12 @@
   top: 0;
   width: 60%;
   height: 100%;
+}
+
+.left__negative_100_pr {
+  left: -100% !important;
+}
+
+.left__zero_pr {
+  left: 0% !important;
 }
