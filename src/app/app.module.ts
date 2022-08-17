@@ -7,23 +7,21 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './modules/login/login.module';
 import { LoginPageComponent } from './modules/login/page/login-page/login-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
-const routes : Routes = [
-  { path:'login', component: LoginPageComponent }
-];
+const routes: Routes = [{ path: 'login', component: LoginPageComponent }];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     LoginModule,
     AppRoutingModule,
+    PasswordStrengthMeterModule,
     RouterModule.forRoot(routes),
-    NgbModule
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,42 @@
+<div class="content_container">
+  <h1>Zarejestruj się</h1>
+  <div class="login_form_container">
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Login:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="login"
+          aria-describedby="loginHelp"
+          placeholder="Login"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Hasło:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Hasło"
+        />
+      </div>
+      <password-strength-meter [password]="password"></password-strength-meter>
+      <div class="form-group">
+        <label for="re-password">Powtórz hasło:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="re-password"
+          placeholder="Powtórz hasło"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-submit">
+        Utwórz konto
+      </button>
+    </form>
+    <div class="new_accout_info">
+      <span>Posiadasz już konto?</span><a> Zaloguj się!</a>
+    </div>
+  </div>
+</div>
