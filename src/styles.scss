@@ -38,3 +38,7 @@ body {
 }
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+@import "src/app/css/core.scss";
+@import "src/app/css/buttons.scss";
+@import "src/app/css/position.scss";
