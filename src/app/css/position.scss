@@ -1,0 +1,11 @@
+.center-horizontal-relative {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+
+.center-vertical-relative {
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}

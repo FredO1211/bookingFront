@@ -1,0 +1,10 @@
+@import "../css/_variables.scss";
+
+.btn-submit {
+    width: 150px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: $secondary-purple;
+    border-color: $secondary-purple;
+    color: $white;
+}
