@@ -8,7 +8,7 @@ import { LoginModule } from './modules/login/login.module';
 import { LoginPageComponent } from './modules/login/page/login-page/login-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-const routes: Routes = [{ path: 'login', component: LoginPageComponent }];
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +16,6 @@ const routes: Routes = [{ path: 'login', component: LoginPageComponent }];
     BrowserModule,
     LoginModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     NgbModule,
   ],
   providers: [],
