@@ -1,16 +1,18 @@
-<div class="login_page_container">
-  <div class="content_container">
+<div class="backgroud-gradient__theme1 relative">
+  <div
+    class="center-content-container medium-size-container backgroud_image__base"
+  >
     <welcome class="welcome_message_container"></welcome>
-    <div class="content_scroller">
+    <div class="right__0 width__40_percent height__100_percent absolute">
       <login-form
-        class="form_container login_form_container"
-        [class]="!loginVisible ? 'left__negative_100_pr' : ''"
+        class="form_container transition_300_ms"
+        [class]="!loginVisible ? 'left__100_percent' : 'left__0_percent'"
         (toggle)="toggleForm()"
       >
       </login-form>
       <registation-form
-        class="form_container registration_form_container"
-        [class]="!loginVisible ? 'left__zero_pr' : ''"
+        class="form_container transition_300_ms"
+        [class]="!loginVisible ? 'left__0_percent' : 'left__100_percent'"
         (toggle)="toggleForm()"
       ></registation-form>
     </div>

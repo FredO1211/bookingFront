@@ -1,11 +1,35 @@
 .center-horizontal-relative {
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 
 .center-vertical-relative {
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+}
+.relative {
+  position: relative !important;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.left {
+  &__0_percent {
+    left: 0% !important;
+  }
+  &__100_percent {
+    left: 100% !important;
+  }
+}
+.right {
+  &__0 {
+    right: 0 !important;
+    &__percent {
+      right: 0% !important;
+    }
+  }
 }

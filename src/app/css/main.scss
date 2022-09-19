@@ -1,11 +1,12 @@
-@import 'abstracts/variables.scss';
+@import "abstracts/variables.scss";
+@import "abstracts/mixins.scss";
 
-@import 'base/reset.scss';
-@import 'base/core.scss';
-@import 'base/position.scss';
+@import "base/reset.scss";
+@import "base/core.scss";
+@import "base/position.scss";
 
-@import 'vendors/bootstrap';
+@import "vendors/bootstrap";
 
-@import 'components/buttons.scss';
-
-
+@import "components/buttons.scss";
+@import "components/form.scss";
+@import "components/container.scss";

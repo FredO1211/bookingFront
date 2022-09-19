@@ -1,0 +1,31 @@
+.transition_300_ms {
+  transition: 300ms ease;
+}
+
+.width {
+  &__40_percent {
+    width: 40% !important;
+  }
+  &__60_percent {
+    width: 60% !important;
+  }
+  &__80_percent {
+    width: 60% !important;
+  }
+  &__80_wv {
+    width: 80vw !important;
+  }
+}
+
+.height {
+  &__100_percent {
+    height: 100% !important;
+  }
+  &__80vh {
+    height: 80vh !important;
+  }
+}
+
+.backgroud_image__base {
+  background-image: url("../../../app/modules/login/assets/background.png");
+}
