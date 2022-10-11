@@ -1,0 +1,12 @@
+<section>
+  <div>
+    <button
+      *ngFor="let button of _config"
+      mat-raised-button
+      [color]="button.color"
+      (click)="execute(button.eventName)"
+    >
+      {{ button.label }}
+    </button>
+  </div>
+</section>
