@@ -1,6 +1,12 @@
 .center-horizontal-relative {
-  left: 50%;
-  transform: translateX(-50%);
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  position: relative;
+}
+
+.right-horizontal-relative {
+  left: 100%;
+  transform: translateX(-100%);
   position: relative;
 }
 

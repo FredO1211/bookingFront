@@ -5,13 +5,13 @@
     <welcome class="welcome_message_container"></welcome>
     <div class="right__0 width__40_percent height__100_percent absolute">
       <login-form
-        class="form_container transition_300_ms"
+        class="form_container transition_300_ms absolute"
         [class]="!loginVisible ? 'left__100_percent' : 'left__0_percent'"
         (toggle)="toggleForm()"
       >
       </login-form>
       <registation-form
-        class="form_container transition_300_ms"
+        class="form_container transition_300_ms absolute"
         [class]="!loginVisible ? 'left__0_percent' : 'left__100_percent'"
         (toggle)="toggleForm()"
       ></registation-form>

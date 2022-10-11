@@ -2,6 +2,14 @@
   transition: 300ms ease;
 }
 
+.margin {
+  &_top {
+    &__30px {
+      margin-top: 30px;
+    }
+  }
+}
+
 .width {
   &__40_percent {
     width: 40% !important;
@@ -18,6 +26,15 @@
 }
 
 .height {
+  &__10_percent {
+    height: 10% !important;
+  }
+  &__15_percent {
+    height: 15% !important;
+  }
+  &__20_percent {
+    height: 20% !important;
+  }
   &__100_percent {
     height: 100% !important;
   }

@@ -1,8 +1,12 @@
 .btn-submit {
-    width: 150px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background-color: $secondary-purple;
-    border-color: $secondary-purple;
-    color: $white;
+  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: $secondary-purple;
+  border-color: $secondary-purple;
+  color: $white;
+}
+
+.btn {
+  margin: 10px 0 !important;
 }

@@ -2,40 +2,49 @@
   <h1>Zarejestruj się</h1>
   <div class="login_form_container">
     <form #f>
-      <div class="form-group">
-        <label>Adres e-mail:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="login"
-          aria-describedby="loginHelp"
-          placeholder="Login"
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Hasło:</label>
-        <input
-          [(ngModel)]="password"
-          name="password"
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Hasło"
-        />
-      </div>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Adres e-mail</mat-label>
+          <input
+            autocomplete="off"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            matInput
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Hasło</mat-label>
+          <input
+            id="password"
+            autocomplete="off"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="none"
+            name="password"
+            type="password"
+            [(ngModel)]="password"
+            matInput
+          />
+        </mat-form-field>
+      </p>
 
-      <div class="form-group">
-        <label for="re-password">Powtórz hasło:</label>
-        <input
-          type="password"
-          class="form-control"
-          id="re-password"
-          placeholder="Powtórz hasło"
-        />
-      </div>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Powtórz hasło</mat-label>
+          <input autocomplete="off" matInput />
+        </mat-form-field>
+      </p>
       <password-strength-meter [password]="password"></password-strength-meter>
 
-      <button type="submit" class="btn btn-submit center-horizontal-relative">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="btn center-horizontal-relative"
+      >
         Utwórz konto
       </button>
     </form>
