@@ -1,46 +1,113 @@
-<div class="center-content-container">
-  <div class="logo-container height__10_percent">
-    <img src="../../../../../assets/logo_black.png" alt="" srcset="" />
-  </div>
-  <div class="form_container width__80_percent margin_top__30px">
-    <form>
-      <div class="form-group">
-        <label>Imię:</label>
+<form>
+  <mat-grid-list cols="2" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Imię</mat-label>
         <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
           type="text"
-          class="form-control"
-          id="login"
-          aria-describedby="loginHelp"
-          placeholder="Login"
+          matInput
         />
-      </div>
-      <div class="form-group">
-        <label for="password">Nazwisko:</label>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwisko</mat-label>
         <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
           type="text"
-          class="form-control"
-          id="password"
-          placeholder="Hasło"
+          matInput
         />
-      </div>
-      <div class="form-group">
-        <label for="password">Miejscowość:</label>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="5" rowHeight="80px">
+    <mat-grid-tile colspan="3">
+      <mat-form-field appearance="outline">
+        <mat-label>Miejscowość</mat-label>
         <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
           type="text"
-          class="form-control"
-          id="password"
-          placeholder="Hasło"
+          matInput
         />
-      </div>
-      <div class="form-group">
-        <label for="password">Nr domu:</label>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Nr. domu</mat-label>
         <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
           type="text"
-          class="form-control"
-          id="password"
-          placeholder="Hasło"
+          matInput
         />
-      </div>
-    </form>
-  </div>
-</div>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Nr. mieszkania</mat-label>
+        <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="5" rowHeight="80px">
+    <mat-grid-tile colspan="3">
+      <mat-form-field appearance="outline">
+        <mat-label>Poczta</mat-label>
+        <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <mat-form-field appearance="outline">
+        <mat-label>Kod pocztowy</mat-label>
+        <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

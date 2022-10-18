@@ -1,7 +1,24 @@
 <div class="backgroud-gradient__theme1 relative">
   <div class="center-content-container medium-size-container">
-    <user-data-form class="form_container"></user-data-form>
-    <div>
+    <div class="logo-container height__10_percent">
+      <img src="../../../../../assets/logo_black.png" alt="" srcset="" />
+    </div>
+    <mat-stepper class="width__80_percent" [linear]="false">
+      <mat-step>
+        <ng-template matStepLabel>Adres</ng-template>
+        <user-data-form class="form_container"></user-data-form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Kontakt</ng-template>
+        <user-data-form class="form_container"></user-data-form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Obiektu</ng-template>
+        <user-data-form class="form_container"></user-data-form>
+      </mat-step>
+    </mat-stepper>
+    <div class="width__80_percent">
       <button-group [config]="getButtonGroupConfig()"></button-group>
     </div>
   </div>
