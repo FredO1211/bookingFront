@@ -1,8 +1,6 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .mat-form-field-wrapper {
-  padding: 0;
-  width: 97%;
-  left: 50%;
-  transform: translateX(-50%);
+  padding-left: 2px;
+  padding-right: 2px;
 }
