@@ -5,16 +5,16 @@
     </div>
     <mat-stepper class="width__80_percent" [linear]="false">
       <mat-step>
-        <ng-template matStepLabel>Adres</ng-template>
+        <ng-template matStepLabel>Dane osobowe</ng-template>
         <user-data-form class="form_container"></user-data-form>
       </mat-step>
 
       <mat-step>
-        <ng-template matStepLabel>Kontakt</ng-template>
-        <user-data-form class="form_container"></user-data-form>
+        <ng-template matStepLabel>Dane obiektu</ng-template>
+        <facility-data-form class="form_container"></facility-data-form>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Obiektu</ng-template>
+        <ng-template matStepLabel>Konfiguracja obiektu</ng-template>
         <user-data-form class="form_container"></user-data-form>
       </mat-step>
     </mat-stepper>

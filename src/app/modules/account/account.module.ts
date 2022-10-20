@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { FacilityDataFormComponent } from './component/facility-data-form/facility-data-form.component';
 
 @NgModule({
-  declarations: [ActivateComponent, UserDataFormComponent],
+  declarations: [ActivateComponent, UserDataFormComponent, FacilityDataFormComponent],
   imports: [
     CommonModule,
     SharedModule,
