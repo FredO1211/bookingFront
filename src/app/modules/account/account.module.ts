@@ -7,10 +7,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
-import { FacilityDataFormComponent } from './component/facility-data-form/facility-data-form.component';
+import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
+import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-form.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [ActivateComponent, UserDataFormComponent, FacilityDataFormComponent],
+  declarations: [
+    ActivateComponent,
+    UserDataFormComponent,
+    CompanyDataFormComponent,
+    FacilityConfigFormComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -18,6 +26,8 @@ import { FacilityDataFormComponent } from './component/facility-data-form/facili
     MatStepperModule,
     MatGridListModule,
     MatInputModule,
+    MatTableModule,
+    MatDialogModule,
   ],
 })
 export class AccountModule {}
