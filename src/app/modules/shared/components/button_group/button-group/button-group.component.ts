@@ -18,4 +18,8 @@ export class ButtonGroupComponent implements OnInit {
   execute(eventName: string) {
     this.eventEmmiter.emit(eventName);
   }
+
+  log(o: any) {
+    console.log(o);
+  }
 }

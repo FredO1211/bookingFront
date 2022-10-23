@@ -4,7 +4,8 @@
       *ngFor="let button of _config"
       mat-raised-button
       [color]="button.color"
-      (click)="execute(button.eventName)"
+      (click)="button.callback()"
+      [disabled]="button.disabled != null && (button.disabled | async)"
     >
       {{ button.label }}
     </button>

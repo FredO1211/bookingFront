@@ -10,7 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
 import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-form.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogActions, MatDialogModule } from '@angular/material/dialog';
+import { LostDataConfirmDialogComponent } from '../shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
+import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserDataFormComponent,
     CompanyDataFormComponent,
     FacilityConfigFormComponent,
+    LostDataConfirmDialogComponent,
+    FacilityFormDialogComponent,
   ],
   imports: [
     CommonModule,

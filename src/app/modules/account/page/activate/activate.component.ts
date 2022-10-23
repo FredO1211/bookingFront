@@ -15,15 +15,27 @@ export class ActivateComponent implements OnInit {
 
   getButtonGroupConfig(): ButtonGroupConfig[] {
     const configList: ButtonGroupConfig[] = [];
-    configList.push(new ButtonGroupConfig('warn', 'Anuluj', 'closeModal'));
     configList.push(
-      new ButtonGroupConfig('accent', 'Cofnij', 'scrollToPreviousPage')
+      new ButtonGroupConfig('warn', 'Anuluj', () => this.closeModal())
     );
     configList.push(
-      new ButtonGroupConfig('primary', 'Dalej', 'scrollToNextPage')
+      new ButtonGroupConfig('accent', 'Cofnij', () =>
+        this.scrollToPreviousPage()
+      )
     );
-    configList.push(new ButtonGroupConfig('green', 'Zapisz', 'save'));
+    configList.push(
+      new ButtonGroupConfig('primary', 'Dalej', () => this.scrollToNextPage())
+    );
+    configList.push(
+      new ButtonGroupConfig('green', 'Zapisz', () => this.save())
+    );
 
     return configList;
   }
+
+  save() {}
+
+  scrollToNextPage() {}
+  scrollToPreviousPage() {}
+  closeModal() {}
 }

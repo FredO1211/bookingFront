@@ -1,7 +1,10 @@
+import { Observable } from 'rxjs';
+
 export class ButtonGroupConfig {
   constructor(
     public color: string,
     public label: string,
-    public eventName: string
+    public callback: () => any,
+    public disabled?: Observable<boolean>
   ) {}
 }
