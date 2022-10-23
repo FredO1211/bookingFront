@@ -1,0 +1,13 @@
+<button-group
+  (execute)="executeButtonGroup($event)"
+  [config]="buttonConfigGroup"
+></button-group>
+<table mat-table class="mat-elevation-z8" [dataSource]="facilities">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
