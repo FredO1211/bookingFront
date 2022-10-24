@@ -9,17 +9,7 @@ import { ButtonGroupConfig } from '../../../dto/config/button-group-config';
 export class ButtonGroupComponent implements OnInit {
   @Input('config') _config: ButtonGroupConfig[];
 
-  @Output('execute') eventEmmiter: EventEmitter<string> = new EventEmitter();
-
   constructor() {}
 
   ngOnInit(): void {}
-
-  execute(eventName: string) {
-    this.eventEmmiter.emit(eventName);
-  }
-
-  log(o: any) {
-    console.log(o);
-  }
 }

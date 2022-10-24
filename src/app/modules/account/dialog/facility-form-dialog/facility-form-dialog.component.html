@@ -1,4 +1,37 @@
 <h2 mat-dialog-title>Dodaj nowy obiekt</h2>
+<form>
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwa</mat-label>
+        <input
+          id="name"
+          autocomplete="off"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          name="name"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field appearance="fill">
+        <mat-label>Typ obiektu</mat-label>
+        <mat-select>
+          <mat-option value="HOTEL">Hotel</mat-option>
+          <mat-option value="BUNGALOW">Domek wypoczynkowy</mat-option>
+          <mat-option value="ROOM">Pokój</mat-option>
+          <mat-option value="APARTMENT">Apartament</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+<mat-divider></mat-divider>
 <mat-dialog-actions>
   <button-group [config]="getButtonGroupConfig()"></button-group>
 </mat-dialog-actions>

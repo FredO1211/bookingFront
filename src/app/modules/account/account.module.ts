@@ -8,11 +8,13 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
-import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-form.component';
+import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-list.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatDialogActions, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { LostDataConfirmDialogComponent } from '../shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facil
     MatInputModule,
     MatTableModule,
     MatDialogModule,
+    MatDividerModule,
+    MatSelectModule,
   ],
 })
 export class AccountModule {}

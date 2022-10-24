@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
 
 @Component({
   selector: 'app-activate',
@@ -9,7 +11,7 @@ import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-grou
 export class ActivateComponent implements OnInit {
   toggle = false;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -31,6 +33,12 @@ export class ActivateComponent implements OnInit {
     );
 
     return configList;
+  }
+
+  openAddFacilityFormDialog() {
+    const dialogRef = this.dialog.open(FacilityFormDialogComponent, {
+      width: '500px',
+    });
   }
 
   save() {}
