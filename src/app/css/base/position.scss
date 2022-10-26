@@ -15,6 +15,12 @@
   transform: translateY(-50%);
   position: relative;
 }
+
+.center-vertical-flex {
+  display: flex;
+  align-items: center;
+}
+
 .relative {
   position: relative !important;
 }

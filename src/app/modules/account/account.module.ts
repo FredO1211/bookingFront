@@ -23,7 +23,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserDataFormComponent,
     CompanyDataFormComponent,
     FacilityConfigFormComponent,
-    LostDataConfirmDialogComponent,
     FacilityFormDialogComponent,
   ],
   imports: [
