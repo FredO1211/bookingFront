@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
-import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
 
 @Component({
   selector: 'facility-config-list',

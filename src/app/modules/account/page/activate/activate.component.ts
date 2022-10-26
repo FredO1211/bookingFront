@@ -39,6 +39,10 @@ export class ActivateComponent implements OnInit {
     const dialogRef = this.dialog.open(FacilityFormDialogComponent, {
       width: '500px',
     });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
   }
 
   save() {}

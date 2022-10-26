@@ -15,6 +15,7 @@ import { LostDataConfirmDialogComponent } from '../shared/dialog/lost-data-confi
 import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatDividerModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class AccountModule {}

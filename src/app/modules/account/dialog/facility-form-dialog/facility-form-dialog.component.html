@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Dodaj nowy obiekt</h2>
-<form>
+<form [formGroup]="baseFacilityConfig">
   <mat-grid-list cols="1" rowHeight="80px">
     <mat-grid-tile>
       <mat-form-field appearance="outline">
@@ -12,6 +12,7 @@
           autocapitalize="none"
           name="name"
           type="text"
+          formControlName="name"
           matInput
         />
       </mat-form-field>
@@ -21,11 +22,14 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill">
         <mat-label>Typ obiektu</mat-label>
-        <mat-select>
-          <mat-option value="HOTEL">Hotel</mat-option>
-          <mat-option value="BUNGALOW">Domek wypoczynkowy</mat-option>
-          <mat-option value="ROOM">Pokój</mat-option>
-          <mat-option value="APARTMENT">Apartament</mat-option>
+        <mat-select formControlName="type">
+          <mat-option value="FacilityType.NONE"></mat-option>
+          <mat-option value="FacilityType.HOTEL">Hotel</mat-option>
+          <mat-option value="FacilityType.BUNGALOW"
+            >Domek wypoczynkowy</mat-option
+          >
+          <mat-option value="FacilityType.ROOM">Pokój</mat-option>
+          <mat-option value="FacilityType.APARTMENT">Apartament</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
@@ -33,5 +37,5 @@
 </form>
 <mat-divider></mat-divider>
 <mat-dialog-actions>
-  <button-group [config]="getButtonGroupConfig()"></button-group>
+  <button-group [config]="buttonGroupConfig"></button-group>
 </mat-dialog-actions>
