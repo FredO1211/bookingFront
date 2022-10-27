@@ -7,10 +7,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LostDataConfirmDialogComponent } from './dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
 
 @NgModule({
-  exports: [ButtonGroupComponent, LostDataConfirmDialogComponent],
-  declarations: [ButtonGroupComponent, LostDataConfirmDialogComponent],
+  exports: [
+    ButtonGroupComponent,
+    LostDataConfirmDialogComponent,
+    ScrollEndDetectDirective,
+  ],
+  declarations: [
+    ButtonGroupComponent,
+    LostDataConfirmDialogComponent,
+    ScrollEndDetectDirective,
+  ],
   imports: [
     CommonModule,
     MatButtonModule,

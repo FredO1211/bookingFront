@@ -32,3 +32,15 @@ body {
     rgba(110, 1, 124, 0.7) 95%
   );
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #673ab7;
+  border-radius: 10px;
+}

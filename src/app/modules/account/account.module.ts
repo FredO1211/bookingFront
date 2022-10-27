@@ -11,11 +11,12 @@ import { CompanyDataFormComponent } from './component/company-data-form/company-
 import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LostDataConfirmDialogComponent } from '../shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    CoreModule,
     SharedModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -38,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
   ],
 })
 export class AccountModule {}

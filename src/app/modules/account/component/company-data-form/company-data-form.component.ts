@@ -9,4 +9,8 @@ export class CompanyDataFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onScrollBottom() {
+    console.log('bottom form parent');
+  }
 }
