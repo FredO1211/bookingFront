@@ -8,17 +8,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LostDataConfirmDialogComponent } from './dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
+import { CurrencyInputFormatDirective } from './directives/currency-input-format.directive';
 
 @NgModule({
   exports: [
     ButtonGroupComponent,
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
+    CurrencyInputFormatDirective,
   ],
   declarations: [
     ButtonGroupComponent,
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
+    CurrencyInputFormatDirective,
   ],
   imports: [
     CommonModule,

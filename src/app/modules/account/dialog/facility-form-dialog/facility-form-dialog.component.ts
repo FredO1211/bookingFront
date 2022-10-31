@@ -36,9 +36,9 @@ export class FacilityFormDialogComponent implements OnInit {
   ];
 
   constructor(
-    public ownReferences: MatDialogRef<FacilityFormDialogComponent>,
+    private ownReferences: MatDialogRef<FacilityFormDialogComponent>,
     private _formBuilder: FormBuilder,
-    public confirmLostDataDialog: MatDialog
+    private confirmLostDataDialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
