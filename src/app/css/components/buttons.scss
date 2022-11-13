@@ -10,3 +10,9 @@
 .btn {
   margin: 10px 0 !important;
 }
+button {
+  transition: 200ms;
+}
+button:hover {
+  transform: scale(1.05);
+}

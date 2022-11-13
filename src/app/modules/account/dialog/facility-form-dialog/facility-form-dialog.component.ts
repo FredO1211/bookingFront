@@ -1,16 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
-import { BaseFacilityConfigDTO } from '../../models/base-facility-config.dto';
-import { FacilityType } from '../../models/facility-type.enum';
 
 @Component({
   selector: 'app-facility-form-dialog',
@@ -20,7 +14,7 @@ import { FacilityType } from '../../models/facility-type.enum';
 export class FacilityFormDialogComponent implements OnInit {
   configureButtonDisability = new BehaviorSubject(false);
 
-  baseFacilityConfig = this._formBuilder.group({
+  baseFacilityConfig = this.formBuilder.group({
     name: new FormControl(''),
     type: new FormControl(),
   });
@@ -29,7 +23,7 @@ export class FacilityFormDialogComponent implements OnInit {
     new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
     new ButtonGroupConfig(
       'accent',
-      'Konfiguruj',
+      'Dodaj',
       () => this.save(),
       this.configureButtonDisability
     ),
@@ -37,7 +31,7 @@ export class FacilityFormDialogComponent implements OnInit {
 
   constructor(
     private ownReferences: MatDialogRef<FacilityFormDialogComponent>,
-    private _formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private confirmLostDataDialog: MatDialog
   ) {}
 

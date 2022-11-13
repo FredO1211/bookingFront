@@ -17,9 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CoreModule } from '../core/core.module';
-import { FacilityDetailsFormDialogComponent } from './dialog/facility-details-form-dialog/facility-details-form-dialog.component';
-import { SingleAccommodationFacilityDetailsFormComponent } from './component/single-accommodation-facility-details-form/single-accommodation-facility-details-form.component';
-import { MultiAccommodationFacilityDetailsFormComponent } from './component/multi-accommodation-facility-details-form/multi-accommodation-facility-details-form.component';
+import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +26,7 @@ import { MultiAccommodationFacilityDetailsFormComponent } from './component/mult
     CompanyDataFormComponent,
     FacilityConfigFormComponent,
     FacilityFormDialogComponent,
-    FacilityDetailsFormDialogComponent,
-    SingleAccommodationFacilityDetailsFormComponent,
-    MultiAccommodationFacilityDetailsFormComponent,
+    ChooseFacilityFormTypeDialogComponent,
   ],
   imports: [
     CommonModule,

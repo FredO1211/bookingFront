@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Wybierz rodzaj obiektu</h1>
+<div
+  class="width__full center-content-container flex-direction__row flex__space-evenly"
+>
+  <div class="square">
+    <mat-card
+      (click)="selectFacilityType('PART_RENT_FACILITY')"
+      class="square-content"
+      style="height: 140.8px"
+    >
+      <i class="fas fa-hotel card-icon"></i>
+      <mat-card-title style="font-size: 11px; text-align: center"
+        >Obiekt wynajmowany na pokoje</mat-card-title
+      >
+    </mat-card>
+  </div>
+  <div class="square">
+    <mat-card
+      (click)="selectFacilityType('WHOLE_RENT_FACILITY')"
+      class="square-content"
+      style="height: 140.8px"
+    >
+      <i class="fas fa-home card-icon"></i>
+      <mat-card-title style="font-size: 11px; text-align: center"
+        >Obiekt wynajmowany w całości</mat-card-title
+      >
+    </mat-card>
+  </div>
+</div>

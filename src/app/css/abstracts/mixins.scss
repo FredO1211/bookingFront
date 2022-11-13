@@ -33,6 +33,9 @@
   &__80_wv {
     width: 80vw !important;
   }
+  &__full {
+    width: 100% !important;
+  }
 }
 
 .height {
@@ -70,5 +73,21 @@
     &__30vh {
       max-height: 30vh;
     }
+  }
+}
+
+.flex {
+  &-direction {
+    &__row {
+      display: flex;
+      flex-direction: row !important;
+    }
+    &__column {
+      display: flex;
+      flex-direction: column !important;
+    }
+  }
+  &__space-evenly {
+    justify-content: space-evenly !important;
   }
 }

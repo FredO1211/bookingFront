@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
-import { FacilityDetailsFormDialogComponent } from '../../dialog/facility-details-form-dialog/facility-details-form-dialog.component';
+import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
 import { BaseFacilityConfigDTO } from '../../models/base-facility-config.dto';
 
@@ -37,15 +37,13 @@ export class ActivateComponent implements OnInit {
     return configList;
   }
 
-  openyFacilityDetailsFormDialog(baseConfig: BaseFacilityConfigDTO) {
-    const dialogRef = this.dialog.open(FacilityDetailsFormDialogComponent, {
-      width: '500px',
-      data: baseConfig,
+  openChooseFacilityTypeDialog() {
+    const dialogRef = this.dialog.open(ChooseFacilityFormTypeDialogComponent, {
+      width: '400px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
+        this.openAddFacilityFormDialog();
       }
     });
   }
@@ -57,7 +55,6 @@ export class ActivateComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.openyFacilityDetailsFormDialog(result);
       }
     });
   }
