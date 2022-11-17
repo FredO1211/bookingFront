@@ -1,56 +1,5 @@
 <h2 mat-dialog-title>Dodaj nowy obiekt</h2>
-<form [formGroup]="baseFacilityConfig">
-  <mat-grid-list cols="1" rowHeight="80px">
-    <mat-grid-tile>
-      <mat-form-field appearance="outline">
-        <mat-label>Nazwa</mat-label>
-        <input
-          id="name"
-          autocomplete="off"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          name="name"
-          type="text"
-          formControlName="name"
-          matInput
-        />
-      </mat-form-field>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <mat-grid-list cols="3" rowHeight="80px">
-    <mat-grid-tile colspan="2">
-      <mat-form-field appearance="fill">
-        <mat-label>Typ obiektu</mat-label>
-        <mat-select formControlName="type">
-          <mat-option></mat-option>
-          <mat-option value="FacilityType.BUNGALOW"
-            >Domek wypoczynkowy</mat-option
-          >
-          <mat-option value="FacilityType.ROOM">Pokój</mat-option>
-          <mat-option value="FacilityType.APARTMENT">Apartament</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1">
-      <mat-form-field appearance="fill">
-        <mat-label>Cena</mat-label>
-        <input
-          id="name"
-          autocomplete="off"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="none"
-          name="name"
-          type="text"
-          class="field-type__currnecy"
-          currency
-          matInput
-        />
-      </mat-form-field>
-    </mat-grid-tile>
-  </mat-grid-list>
-</form>
+<facility-form></facility-form>
 <mat-divider></mat-divider>
 <mat-dialog-actions>
   <button-group [config]="buttonGroupConfig"></button-group>

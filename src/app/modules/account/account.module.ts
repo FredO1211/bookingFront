@@ -18,6 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CoreModule } from '../core/core.module';
 import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
+import { FacilityFormComponent } from './component/facility-form/facility-form.component';
+import { HotelFormDialogComponent } from './dialog/hotel-form-dialog/hotel-form-dialog.component';
+import { HotelFormOverviewComponent } from './component/hotel-form-overview/hotel-form-overview.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,9 @@ import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-
     FacilityConfigFormComponent,
     FacilityFormDialogComponent,
     ChooseFacilityFormTypeDialogComponent,
+    FacilityFormComponent,
+    HotelFormDialogComponent,
+    HotelFormOverviewComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +50,7 @@ import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatTooltipModule,
   ],
 })
 export class AccountModule {}

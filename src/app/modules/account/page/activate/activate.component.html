@@ -6,10 +6,7 @@
     <mat-stepper class="width__80_percent" [linear]="false">
       <mat-step>
         <ng-template matStepLabel>Dane osobowe</ng-template>
-        <facility-config-list
-          (addNewFacilityClick)="openChooseFacilityTypeDialog()"
-          class="form_container"
-        ></facility-config-list>
+        <facility-config-list class="form_container"></facility-config-list>
       </mat-step>
 
       <mat-step>

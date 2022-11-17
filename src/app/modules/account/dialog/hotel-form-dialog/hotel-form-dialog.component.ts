@@ -1,49 +1,45 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
 
 @Component({
-  selector: 'app-facility-form-dialog',
-  templateUrl: './facility-form-dialog.component.html',
-  styleUrls: ['./facility-form-dialog.component.scss'],
+  selector: 'app-hotel-form-dialog',
+  templateUrl: './hotel-form-dialog.component.html',
+  styleUrls: ['./hotel-form-dialog.component.scss'],
 })
-export class FacilityFormDialogComponent implements OnInit {
-  baseFacilityConfig = this.formBuilder.group({
-    name: new FormControl(''),
-    type: new FormControl(),
-  });
-
+export class HotelFormDialogComponent implements OnInit {
   configureButtonDisability = new BehaviorSubject(false);
 
-  buttonGroupConfig: ButtonGroupConfig[] = [
+  constructor(
+    private ownReferences: MatDialogRef<HotelFormDialogComponent>,
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {}
+
+  dialogButtonConfig: ButtonGroupConfig[] = [
     new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
     new ButtonGroupConfig(
       'success',
-      '+ Dodaj',
+      'Zapisz',
       () => this.save(),
       this.configureButtonDisability
     ),
   ];
 
-  constructor(
-    private ownReferences: MatDialogRef<FacilityFormDialogComponent>,
-    private formBuilder: FormBuilder,
-    private confirmLostDataDialog: MatDialog
-  ) {}
-
-  ngOnInit(): void {}
+  facilityButtonConfig: ButtonGroupConfig[] = [
+    new ButtonGroupConfig('success', '+ Dodaj', () =>
+      this.openLoseDataDialog()
+    ),
+  ];
 
   private openLoseDataDialog() {
-    const dialogRef = this.confirmLostDataDialog.open(
-      LostDataConfirmDialogComponent,
-      {
-        width: '400px',
-      }
-    );
+    const dialogRef = this.dialog.open(LostDataConfirmDialogComponent, {
+      width: '400px',
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != null) {
@@ -55,7 +51,7 @@ export class FacilityFormDialogComponent implements OnInit {
   }
 
   save() {
-    this.close(this.baseFacilityConfig.value);
+    this.close();
   }
 
   close(dialogResult?: any) {

@@ -24,3 +24,7 @@ td {
   margin: 0;
   padding: 0;
 }
+
+.mat-form-field__clear_padding > div {
+  padding-bottom: 0 !important;
+}

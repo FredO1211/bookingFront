@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
-import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
-import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
-import { BaseFacilityConfigDTO } from '../../models/base-facility-config.dto';
 
 @Component({
   selector: 'app-activate',
@@ -35,28 +32,6 @@ export class ActivateComponent implements OnInit {
     );
 
     return configList;
-  }
-
-  openChooseFacilityTypeDialog() {
-    const dialogRef = this.dialog.open(ChooseFacilityFormTypeDialogComponent, {
-      width: '400px',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.openAddFacilityFormDialog();
-      }
-    });
-  }
-
-  openAddFacilityFormDialog() {
-    const dialogRef = this.dialog.open(FacilityFormDialogComponent, {
-      width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-      }
-    });
   }
 
   save() {}
