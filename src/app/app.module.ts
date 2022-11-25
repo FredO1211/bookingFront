@@ -7,6 +7,7 @@ import { LoginModule } from './modules/login/login.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountModule } from './modules/account/account.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainModule } from './modules/main/main.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     LoginModule,
     AccountModule,
+    MainModule,
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,

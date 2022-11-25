@@ -1,0 +1,14 @@
+.main-sidenav {
+  width: 20%;
+  height: 100vh;
+  background-color: #d6dfe4;
+  padding: 0 3px;
+}
+
+.main-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}

@@ -1,14 +1,23 @@
-.btn-submit {
-  width: 150px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  background-color: $secondary-purple;
-  border-color: $secondary-purple;
-  color: $white;
-}
-
 .btn {
   margin: 10px 0 !important;
+  &__open-sidenav {
+    position: absolute !important;
+    left: 10px;
+    top: 20px;
+  }
+  &__sidenav-btn {
+    width: 100%;
+    font-weight: 300;
+    margin: 3px 0 !important;
+  }
+  &-submit {
+    width: 150px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: $secondary-purple;
+    border-color: $secondary-purple;
+    color: $white;
+  }
 }
 button {
   transition: 200ms;
