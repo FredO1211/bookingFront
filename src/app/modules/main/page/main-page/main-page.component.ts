@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-main-page',
@@ -10,4 +10,8 @@ export class MainPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  openSidenav(sidenav: MatDrawer) {
+    sidenav.toggle();
+  }
 }

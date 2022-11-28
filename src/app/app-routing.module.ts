@@ -6,7 +6,11 @@ import { MainPageComponent } from './modules/main/page/main-page/main-page.compo
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
-  { path: 'home', component: MainPageComponent },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/main/main.module').then((x) => x.MainModule),
+  },
   {
     path: 'account',
     children: [{ path: 'activate', component: ActivateComponent }],
