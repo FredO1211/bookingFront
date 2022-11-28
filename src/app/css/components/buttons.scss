@@ -10,6 +10,10 @@
     font-weight: 300;
     margin: 3px 0 !important;
   }
+  &__sidenav-btn:hover {
+    transform: scale(1);
+    background-color: #8ca1ae;
+  }
   &-submit {
     width: 150px;
     margin-top: 15px;
