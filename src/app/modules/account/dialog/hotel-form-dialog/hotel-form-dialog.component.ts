@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
+import { FacilityType } from '../../models/facility-type.enum';
 
 @Component({
   selector: 'app-hotel-form-dialog',
@@ -19,6 +20,13 @@ export class HotelFormDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  facilityFormConfig = {
+    facilityTypes: [
+      { name: 'Pokój', type: FacilityType.ROOM },
+      { name: 'Apartament', type: FacilityType.APARTMENT },
+    ],
+  };
 
   dialogButtonConfig: ButtonGroupConfig[] = [
     new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),

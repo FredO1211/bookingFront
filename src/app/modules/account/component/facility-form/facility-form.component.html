@@ -1,4 +1,4 @@
-<form [formGroup]="baseFacilityConfig">
+<form [formGroup]="formGroup">
   <mat-grid-list cols="1" rowHeight="80px">
     <mat-grid-tile>
       <mat-form-field appearance="outline">
@@ -23,11 +23,11 @@
         <mat-label>Typ obiektu</mat-label>
         <mat-select formControlName="type">
           <mat-option></mat-option>
-          <mat-option value="FacilityType.BUNGALOW"
-            >Domek wypoczynkowy</mat-option
+          <mat-option
+            *ngFor="let facilityType of formConfig.facilityTypes"
+            [value]="facilityType.type"
+            >{{ facilityType.name }}</mat-option
           >
-          <mat-option value="FacilityType.ROOM">Pokój</mat-option>
-          <mat-option value="FacilityType.APARTMENT">Apartament</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
