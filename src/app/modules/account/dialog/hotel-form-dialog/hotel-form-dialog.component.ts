@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
-import { FacilityType } from '../../models/facility-type.enum';
+import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
+import { ConfigGeneratorService } from '../../service/config-generator.service';
 
 @Component({
   selector: 'app-hotel-form-dialog',
@@ -13,20 +14,18 @@ import { FacilityType } from '../../models/facility-type.enum';
 })
 export class HotelFormDialogComponent implements OnInit {
   configureButtonDisability = new BehaviorSubject(false);
+  facilityFormConfig: FacilityFormConfig;
 
   constructor(
+    private configGeneratorService: ConfigGeneratorService,
     private ownReferences: MatDialogRef<HotelFormDialogComponent>,
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
-
-  facilityFormConfig = {
-    facilityTypes: [
-      { name: 'Pokój', type: FacilityType.ROOM },
-      { name: 'Apartament', type: FacilityType.APARTMENT },
-    ],
-  };
+  ngOnInit(): void {
+    this.facilityFormConfig =
+      this.configGeneratorService.getFacilityFormConfigForHotel();
+  }
 
   dialogButtonConfig: ButtonGroupConfig[] = [
     new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),

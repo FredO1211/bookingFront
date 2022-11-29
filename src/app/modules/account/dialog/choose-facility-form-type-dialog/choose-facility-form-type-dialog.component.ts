@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FacilityFormType } from '../../models/facility-form-type.enum';
+import { FacilityFormType } from '../../dto/facility-form-type.enum';
 
 @Component({
   selector: 'choose-facility-form-type-dialog',

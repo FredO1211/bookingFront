@@ -1,11 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
-import { FacilityType } from '../../models/facility-type.enum';
+import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
+import { ConfigGeneratorService } from '../../service/config-generator.service';
 
 @Component({
   selector: 'app-facility-form-dialog',
@@ -13,18 +14,11 @@ import { FacilityType } from '../../models/facility-type.enum';
   styleUrls: ['./facility-form-dialog.component.scss'],
 })
 export class FacilityFormDialogComponent implements OnInit {
+  facilityFormConfig: FacilityFormConfig;
   baseFacilityConfig = this.formBuilder.group({
     name: new FormControl(''),
     type: new FormControl(),
   });
-
-  facilityFormConfig = {
-    facilityTypes: [
-      { name: 'Domek wypoczynkowy', type: FacilityType.BUNGALOW },
-      { name: 'Pokój', type: FacilityType.ROOM },
-      { name: 'Apartament', type: FacilityType.APARTMENT },
-    ],
-  };
 
   configureButtonDisability = new BehaviorSubject(false);
 
@@ -39,12 +33,16 @@ export class FacilityFormDialogComponent implements OnInit {
   ];
 
   constructor(
+    private configGeneratorService: ConfigGeneratorService,
     private ownReferences: MatDialogRef<FacilityFormDialogComponent>,
     private formBuilder: FormBuilder,
     private confirmLostDataDialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.facilityFormConfig =
+      this.configGeneratorService.getDefaultFacilityFormConfig();
+  }
 
   private openLoseDataDialog() {
     const dialogRef = this.confirmLostDataDialog.open(

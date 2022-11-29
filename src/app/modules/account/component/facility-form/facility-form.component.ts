@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FacilityFormConfig } from '../../models/facility-form-config.dto';
+import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
 
 @Component({
   selector: 'facility-form',
