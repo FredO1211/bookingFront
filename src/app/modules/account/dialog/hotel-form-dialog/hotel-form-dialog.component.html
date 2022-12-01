@@ -1,12 +1,1 @@
-<h2 mat-dialog-title>Skonfiguruj swój ośrodek</h2>
-<hotel-form-overview></hotel-form-overview>
-<mat-card style="margin-top: 15px">
-  <mat-card-header>
-    <mat-card-title>+ Dodaj nowy pokój</mat-card-title>
-  </mat-card-header>
-  <facility-form [formConfig]="facilityFormConfig"></facility-form>
-  <button-group [config]="facilityButtonConfig"></button-group>
-</mat-card>
-<mat-dialog-actions>
-  <button-group [config]="dialogButtonConfig"></button-group>
-</mat-dialog-actions>
+<hotel-form-overview (closeEmmiter)="closeDialog()"></hotel-form-overview>

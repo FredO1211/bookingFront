@@ -9,8 +9,8 @@ import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
 })
 export class FacilityFormComponent implements OnInit {
   @Input('formConfig') formConfig: FacilityFormConfig;
+  @Input('formGroup') formGroup: FormGroup;
 
-  formGroup: FormGroup;
   constructor() {}
 
   ngOnInit(): void {}

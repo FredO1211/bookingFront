@@ -6,10 +6,10 @@ export interface FacilitiesConfiguration {
   facilities: Facility[];
 }
 export interface Facility {
-  name: string;
-  facilityType: FacilityType;
-  deafultPrice: number;
-  maxGuestCount: number;
-  arrivalHour: Time;
-  arrivalDeparture: Time;
+  name?: string;
+  facilityType?: FacilityType;
+  deafultPrice?: number;
+  maxGuestCount?: number;
+  arrivalHour?: Time;
+  arrivalDeparture?: Time;
 }

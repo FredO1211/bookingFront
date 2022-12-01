@@ -1,3 +1,4 @@
+<h2 mat-dialog-title>Skonfiguruj swój ośrodek</h2>
 <mat-card class="hotel-overview-container">
   <form style="width: 80%">
     <mat-form-field appearance="outline" class="mat-form-field__clear_padding">
@@ -16,9 +17,24 @@
   </form>
   <mat-card-subtitle
     class="counter"
-    [matTooltip]="objects"
+    [matTooltip]="facilityNamesAsString"
     matTooltipPosition="right"
   >
-    <i class="fas fa-home card-icon"></i>x3
+    <i class="fas fa-home card-icon"></i>x
+    {{ _facilityConfiguration.facilities.length }}
   </mat-card-subtitle>
 </mat-card>
+
+<mat-card style="margin-top: 15px">
+  <mat-card-header>
+    <mat-card-title>+ Dodaj nowy pokój</mat-card-title>
+  </mat-card-header>
+  <facility-form
+    [formConfig]="facilityFormConfig"
+    [formGroup]="facilityFormGroup"
+  ></facility-form>
+  <button-group [config]="facilityButtonConfig"></button-group>
+</mat-card>
+<mat-dialog-actions>
+  <button-group [config]="dialogButtonConfig"></button-group>
+</mat-dialog-actions>
