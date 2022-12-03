@@ -3,7 +3,8 @@
   &__open-sidenav {
     position: absolute !important;
     left: 10px;
-    top: 20px;
+    top: 46px;
+    z-index: 1;
   }
   &__sidenav-btn {
     width: 100%;

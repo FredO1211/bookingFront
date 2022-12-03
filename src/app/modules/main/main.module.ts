@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MainRoutingModule } from './main-routing.module';
 import { AboutModule } from './module/about/about.module';
 import { MainSidenavComponent } from './component/main-sidenav/main-sidenav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomeModule } from './module/home/home.module';
 
 @NgModule({
   declarations: [MainPageComponent, MainSidenavComponent],
@@ -15,6 +17,8 @@ import { MainSidenavComponent } from './component/main-sidenav/main-sidenav.comp
     MatButtonModule,
     MainRoutingModule,
     AboutModule,
+    MatToolbarModule,
+    HomeModule,
   ],
 })
 export class MainModule {}
