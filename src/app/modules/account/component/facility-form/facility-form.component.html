@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" #f>
   <mat-grid-list cols="1" rowHeight="80px">
     <mat-grid-tile>
       <mat-form-field appearance="outline">
@@ -10,9 +10,13 @@
           autocorrect="off"
           autocapitalize="none"
           formControlName="name"
+          #n
           type="text"
           matInput
         />
+        <mat-error *ngIf="formGroup.get('name')?.invalid">
+          {{ getMessageForNameControl() }}
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>

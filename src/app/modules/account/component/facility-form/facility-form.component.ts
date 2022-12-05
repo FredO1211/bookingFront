@@ -14,4 +14,14 @@ export class FacilityFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getMessageForNameControl(): string {
+    const formControl = this.formGroup.get('name');
+    if (formControl?.hasError('required')) {
+      return 'Aby zapisać obiekt podaj nazwę!';
+    } else if (formControl?.hasError('used')) {
+      return 'Podana nazwa została już użyta!';
+    }
+    return 'Nieprawidłowa wartość';
+  }
 }

@@ -20,16 +20,9 @@ export class FacilityFormDialogComponent implements OnInit {
     type: new FormControl(),
   });
 
-  configureButtonDisability = new BehaviorSubject(false);
-
   buttonGroupConfig: ButtonGroupConfig[] = [
     new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
-    new ButtonGroupConfig(
-      'success',
-      '+ Dodaj',
-      () => this.save(),
-      this.configureButtonDisability
-    ),
+    new ButtonGroupConfig('success', '+ Dodaj', () => this.save()),
   ];
 
   constructor(
