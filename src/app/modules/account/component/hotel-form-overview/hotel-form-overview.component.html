@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Skonfiguruj swój ośrodek</h2>
 <mat-card class="hotel-overview-container">
-  <form style="width: 80%">
+  <form [formGroup]="formGroup" style="width: 80%">
     <mat-form-field appearance="outline" class="mat-form-field__clear_padding">
       <mat-label>Nazwa hotelu</mat-label>
       <input
@@ -12,6 +12,7 @@
         name="name"
         type="text"
         matInput
+        formControlName="facilityName"
       />
     </mat-form-field>
   </form>

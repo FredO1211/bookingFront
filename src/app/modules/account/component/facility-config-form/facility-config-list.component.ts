@@ -4,6 +4,8 @@ import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-grou
 import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
 import { HotelFormDialogComponent } from '../../dialog/hotel-form-dialog/hotel-form-dialog.component';
+import { FacilitiesConfiguration } from '../../model/facility-configuration.model';
+import { FacilitiesConfigurationDataService } from '../../service/facilities-configuration-data.service';
 
 @Component({
   selector: 'facility-config-list',
@@ -13,15 +15,17 @@ import { HotelFormDialogComponent } from '../../dialog/hotel-form-dialog/hotel-f
 export class FacilityConfigFormComponent implements OnInit {
   @Output() addNewFacilityClick = new EventEmitter();
 
-  facilities: any[] = [];
-  displayedColumns: string[] = ['position'];
+  displayedColumns: string[] = ['facilityName'];
   buttonConfigGroup: ButtonGroupConfig[] = [
     new ButtonGroupConfig('palette.success.light', '+ Dodaj obiekt', () =>
       this.onNewFacilityClick()
     ),
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public dataService: FacilitiesConfigurationDataService
+  ) {}
 
   ngOnInit(): void {}
 

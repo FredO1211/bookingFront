@@ -13,6 +13,7 @@ import {
 } from '../../model/facility-configuration.model';
 import { ButtonsDisabilityManageService } from '../../service/buttons-disability-manage.service';
 import { ConfigGeneratorService } from '../../service/config-generator.service';
+import { FacilitiesConfigurationDataService } from '../../service/facilities-configuration-data.service';
 import { FormGroupGenerator } from '../../service/form-group-generator';
 
 @Component({
@@ -27,14 +28,16 @@ export class HotelFormOverviewComponent implements OnInit {
   facilityButtonConfig: ButtonGroupConfig[];
 
   configureButtonDisability = new BehaviorSubject(false);
-  newFacilityButtonDisability = new BehaviorSubject(true);
+
   facilityFormConfig: FacilityFormConfig;
+  formGroup: FormGroup;
   facilityFormGroup: FormGroup;
   formStatus: string;
 
   constructor(
     public disabilityFollowingService: ButtonsDisabilityManageService,
     private configGeneratorService: ConfigGeneratorService,
+    private dataService: FacilitiesConfigurationDataService,
     private dialog: MatDialog
   ) {}
 
@@ -49,12 +52,14 @@ export class HotelFormOverviewComponent implements OnInit {
     this.facilityFormConfig =
       this.configGeneratorService.getFacilityFormConfigForHotel();
 
-    this.facilityFormGroup = FormGroupGenerator.getFormGroupForHotelForm(
+    this.formGroup = FormGroupGenerator.getFormGroupForHotelForm(
       this.getListOfNames()
     );
 
+    this.facilityFormGroup = this.formGroup.get('facility') as FormGroup;
+
     this.disabilityFollowingService.initAddNewHotelFacilityButtonDisabilityFollowing(
-      this.facilityFormGroup
+      this.formGroup
     );
 
     this.facilityButtonConfig = [
@@ -67,16 +72,6 @@ export class HotelFormOverviewComponent implements OnInit {
         this.disabilityFollowingService.getAddNewHotelFacilityButtonDisability$()
       ),
     ];
-
-    this.facilityFormGroup.statusChanges.subscribe((result) => {
-      if (result != this.formStatus) {
-        if (result == 'INVALID') {
-          this.newFacilityButtonDisability.next(true);
-        } else if (result == 'VALID') {
-          this.newFacilityButtonDisability.next(false);
-        }
-      }
-    });
   }
 
   getFacilityNamesAsString(): string {
@@ -119,7 +114,7 @@ export class HotelFormOverviewComponent implements OnInit {
   }
 
   save() {
-    this.closeDialog();
+    this.dataService.insert(this.formGroup.value);
   }
 
   closeDialog() {
