@@ -11,7 +11,9 @@ import {
   FacilitiesConfiguration,
   Facility,
 } from '../../model/facility-configuration.model';
+import { ButtonsDisabilityManageService } from '../../service/buttons-disability-manage.service';
 import { ConfigGeneratorService } from '../../service/config-generator.service';
+import { FormGroupGenerator } from '../../service/form-group-generator';
 
 @Component({
   selector: 'hotel-form-overview',
@@ -22,6 +24,8 @@ export class HotelFormOverviewComponent implements OnInit {
   @Input() _facilityConfiguration: FacilitiesConfiguration;
   @Output() closeEmmiter = new EventEmitter();
 
+  facilityButtonConfig: ButtonGroupConfig[];
+
   configureButtonDisability = new BehaviorSubject(false);
   newFacilityButtonDisability = new BehaviorSubject(true);
   facilityFormConfig: FacilityFormConfig;
@@ -29,6 +33,7 @@ export class HotelFormOverviewComponent implements OnInit {
   formStatus: string;
 
   constructor(
+    public disabilityFollowingService: ButtonsDisabilityManageService,
     private configGeneratorService: ConfigGeneratorService,
     private dialog: MatDialog
   ) {}
@@ -44,20 +49,24 @@ export class HotelFormOverviewComponent implements OnInit {
     this.facilityFormConfig =
       this.configGeneratorService.getFacilityFormConfigForHotel();
 
-    this.facilityFormGroup = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        valueIsAlreadyExistsValidator(this.getListOfNames()),
-      ]),
-      facilityType: new FormControl('', Validators.required),
-      deafultPrice: new FormControl(),
-      maxGuestCount: new FormControl(0, [
-        Validators.required,
-        Validators.min(1),
-      ]),
-      arrivalHour: new FormControl(),
-      arrivalDeparture: new FormControl(),
-    });
+    this.facilityFormGroup = FormGroupGenerator.getFormGroupForHotelForm(
+      this.getListOfNames()
+    );
+
+    this.disabilityFollowingService.initAddNewHotelFacilityButtonDisabilityFollowing(
+      this.facilityFormGroup
+    );
+
+    this.facilityButtonConfig = [
+      new ButtonGroupConfig(
+        'success',
+        '+ Dodaj',
+        () => {
+          this.insertNewFacility(this.facilityFormGroup.value);
+        },
+        this.disabilityFollowingService.getAddNewHotelFacilityButtonDisability$()
+      ),
+    ];
 
     this.facilityFormGroup.statusChanges.subscribe((result) => {
       if (result != this.formStatus) {
@@ -84,17 +93,6 @@ export class HotelFormOverviewComponent implements OnInit {
     ),
   ];
 
-  facilityButtonConfig: ButtonGroupConfig[] = [
-    new ButtonGroupConfig(
-      'success',
-      '+ Dodaj',
-      () => {
-        this.insertNewFacility(this.facilityFormGroup.value);
-      },
-      this.newFacilityButtonDisability
-    ),
-  ];
-
   private openLoseDataDialog() {
     const dialogRef = this.dialog.open(LostDataConfirmDialogComponent, {
       width: '400px',
@@ -114,7 +112,10 @@ export class HotelFormOverviewComponent implements OnInit {
     this.facilityFormGroup.get('name')?.reset();
     this.facilityFormGroup
       .get('name')
-      ?.setValidators(valueIsAlreadyExistsValidator(this.getListOfNames()));
+      ?.setValidators([
+        Validators.required,
+        valueIsAlreadyExistsValidator(this.getListOfNames()),
+      ]);
   }
 
   save() {
