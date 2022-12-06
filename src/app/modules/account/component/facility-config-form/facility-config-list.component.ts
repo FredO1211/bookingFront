@@ -15,7 +15,7 @@ import { FacilitiesConfigurationDataService } from '../../service/facilities-con
 export class FacilityConfigFormComponent implements OnInit {
   @Output() addNewFacilityClick = new EventEmitter();
 
-  displayedColumns: string[] = ['facilityName'];
+  displayedColumns: string[] = ['type', 'facilityName', 'operations'];
   buttonConfigGroup: ButtonGroupConfig[] = [
     new ButtonGroupConfig('palette.success.light', '+ Dodaj obiekt', () =>
       this.onNewFacilityClick()
