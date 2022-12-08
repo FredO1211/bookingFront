@@ -8,7 +8,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
-import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-list.component';
+import { FacilityConfigFormComponent } from './component/facility-config-overview/facility-config-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
@@ -22,6 +22,8 @@ import { FacilityFormComponent } from './component/facility-form/facility-form.c
 import { HotelFormDialogComponent } from './dialog/hotel-form-dialog/hotel-form-dialog.component';
 import { HotelFormOverviewComponent } from './component/hotel-form-overview/hotel-form-overview.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatCardModule,
     MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class AccountModule {}
