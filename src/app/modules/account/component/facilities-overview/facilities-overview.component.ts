@@ -4,13 +4,12 @@ import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-grou
 import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
 import { HotelFormDialogComponent } from '../../dialog/hotel-form-dialog/hotel-form-dialog.component';
-import { FacilitiesConfiguration } from '../../model/facility-configuration.model';
 import { FacilitiesConfigurationDataService } from '../../service/facilities-configuration-data.service';
 
 @Component({
-  selector: 'facility-config-list',
-  templateUrl: './facility-config-list.component.html',
-  styleUrls: ['./facility-config-list.component.scss'],
+  selector: 'facilities-overview',
+  templateUrl: './facilities-overview.component.html',
+  styleUrls: ['./facilities-overview.component.scss'],
 })
 export class FacilityConfigFormComponent implements OnInit {
   @Output() addNewFacilityClick = new EventEmitter();

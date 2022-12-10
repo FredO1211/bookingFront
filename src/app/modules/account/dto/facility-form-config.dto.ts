@@ -1,4 +1,4 @@
-import { FacilityType } from './facility-type.enum';
+import { RentedAreaType } from './rented-area-type.enum';
 
 export interface FacilityFormConfig {
   facilityTypes: FacilityTypeOption[];
@@ -6,5 +6,5 @@ export interface FacilityFormConfig {
 
 export interface FacilityTypeOption {
   name: string;
-  type: FacilityType;
+  type: RentedAreaType;
 }

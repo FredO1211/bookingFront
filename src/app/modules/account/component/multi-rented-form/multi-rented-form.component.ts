@@ -7,22 +7,20 @@ import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-grou
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
 import { valueIsAlreadyExistsValidator } from 'src/app/modules/shared/validators/value-is-already-exists.validator';
 import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
-import {
-  FacilitiesConfiguration,
-  Facility,
-} from '../../model/facility-configuration.model';
+import { FacilityType } from '../../dto/facility-type.enum';
+import { Facility, RentedArea } from '../../model/facility-configuration.model';
 import { ButtonsDisabilityManageService } from '../../service/buttons-disability-manage.service';
 import { ConfigGeneratorService } from '../../service/config-generator.service';
 import { FacilitiesConfigurationDataService } from '../../service/facilities-configuration-data.service';
 import { FormGroupGenerator } from '../../service/form-group-generator';
 
 @Component({
-  selector: 'hotel-form-overview',
-  templateUrl: './hotel-form-overview.component.html',
-  styleUrls: ['./hotel-form-overview.component.scss'],
+  selector: 'multi-rented-form',
+  templateUrl: './multi-rented-form.component.html',
+  styleUrls: ['./multi-rented-form.component.scss'],
 })
 export class HotelFormOverviewComponent implements OnInit {
-  @Input() _facilityConfiguration: FacilitiesConfiguration;
+  @Input() _facility: Facility;
   @Output() closeEmmiter = new EventEmitter();
 
   facilityButtonConfig: ButtonGroupConfig[];
@@ -42,10 +40,11 @@ export class HotelFormOverviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this._facilityConfiguration == null) {
-      this._facilityConfiguration = {
-        hotelName: '',
-        facilities: [],
+    if (this._facility == null) {
+      this._facility = {
+        facilityName: '',
+        facilityType: FacilityType.MULTI_RENTED_FACILITY,
+        rentedAreas: [],
       };
     }
 
@@ -53,7 +52,8 @@ export class HotelFormOverviewComponent implements OnInit {
       this.configGeneratorService.getFacilityFormConfigForHotel();
 
     this.formGroup = FormGroupGenerator.getFormGroupForHotelForm(
-      this.getListOfNames()
+      this.getListOfNames(),
+      this._facility
     );
 
     this.facilityFormGroup = this.formGroup.get('facility') as FormGroup;
@@ -75,7 +75,7 @@ export class HotelFormOverviewComponent implements OnInit {
   }
 
   getFacilityNamesAsString(): string {
-    return this._facilityConfiguration.facilities.map((f) => f.name).join(', ');
+    return this._facility.rentedAreas.map((f) => f.name).join(', ');
   }
 
   dialogButtonConfig: ButtonGroupConfig[] = [
@@ -102,8 +102,8 @@ export class HotelFormOverviewComponent implements OnInit {
     });
   }
 
-  insertNewFacility(facility: Facility | any) {
-    this._facilityConfiguration.facilities.push(facility);
+  insertNewFacility(facility: RentedArea | any) {
+    this._facility.rentedAreas.push(facility);
     this.facilityFormGroup.get('name')?.reset();
     this.facilityFormGroup
       .get('name')
@@ -122,6 +122,6 @@ export class HotelFormOverviewComponent implements OnInit {
   }
 
   private getListOfNames(): string[] {
-    return this._facilityConfiguration.facilities.map((f) => f.name);
+    return this._facility.rentedAreas.map((f) => f.name);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FacilityFormConfig } from '../dto/facility-form-config.dto';
-import { FacilityType } from '../dto/facility-type.enum';
+import { RentedAreaType } from '../dto/rented-area-type.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,8 @@ export class ConfigGeneratorService {
   getFacilityFormConfigForHotel(): FacilityFormConfig {
     return {
       facilityTypes: [
-        { name: 'Pokój', type: FacilityType.ROOM },
-        { name: 'Apartament', type: FacilityType.APARTMENT },
+        { name: 'Pokój', type: RentedAreaType.ROOM },
+        { name: 'Apartament', type: RentedAreaType.APARTMENT },
       ],
     };
   }
@@ -20,9 +20,9 @@ export class ConfigGeneratorService {
   getDefaultFacilityFormConfig(): FacilityFormConfig {
     return {
       facilityTypes: [
-        { name: 'Domek wypoczynkowy', type: FacilityType.BUNGALOW },
-        { name: 'Pokój', type: FacilityType.ROOM },
-        { name: 'Apartament', type: FacilityType.APARTMENT },
+        { name: 'Domek wypoczynkowy', type: RentedAreaType.BUNGALOW },
+        { name: 'Pokój', type: RentedAreaType.ROOM },
+        { name: 'Apartament', type: RentedAreaType.APARTMENT },
       ],
     };
   }

@@ -1,6 +1,4 @@
 export enum FacilityType {
-  NONE,
-  BUNGALOW,
-  ROOM,
-  APARTMENT,
+  MULTI_RENTED_FACILITY,
+  SINGLE_RENTED_FACILITY,
 }

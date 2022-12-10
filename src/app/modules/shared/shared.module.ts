@@ -9,6 +9,7 @@ import { LostDataConfirmDialogComponent } from './dialog/lost-data-confirm-dialo
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
 import { CurrencyInputFormatDirective } from './directives/currency-input-format.directive';
+import { FacilityTypeToStringPipe } from './pipes/facility-type-to-string.pipe';
 
 @NgModule({
   exports: [
@@ -16,12 +17,14 @@ import { CurrencyInputFormatDirective } from './directives/currency-input-format
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
+    FacilityTypeToStringPipe,
   ],
   declarations: [
     ButtonGroupComponent,
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
+    FacilityTypeToStringPipe,
   ],
   imports: [
     CommonModule,

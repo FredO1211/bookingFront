@@ -7,7 +7,9 @@
 >
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef>Typ</th>
-    <td mat-cell *matCellDef="let element"></td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.facilityType | facilityTypeToString }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="facilityName">

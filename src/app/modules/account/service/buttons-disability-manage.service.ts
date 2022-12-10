@@ -13,7 +13,6 @@ export class ButtonsDisabilityManageService {
   initAddNewHotelFacilityButtonDisabilityFollowing(formGroup: FormGroup) {
     this.addNewHotelFacilityFormStatusSubscription =
       formGroup.statusChanges.subscribe((result) => {
-        debugger;
         if (result != this.addNewHotelFacilityFormPreviousStatus) {
           if (result == 'INVALID') {
             this.newFacilityButtonDisability$.next(true);

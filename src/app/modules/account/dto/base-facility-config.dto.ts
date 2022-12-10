@@ -1,6 +1,6 @@
-import { FacilityType } from './facility-type.enum';
+import { RentedAreaType } from './rented-area-type.enum';
 
 export class BaseFacilityConfigDTO {
   public name: string;
-  public type: FacilityType;
+  public type: RentedAreaType;
 }
