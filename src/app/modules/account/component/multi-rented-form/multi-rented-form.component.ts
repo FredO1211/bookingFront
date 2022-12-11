@@ -6,6 +6,7 @@ import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lo
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
 import { valueIsAlreadyExistsValidator } from 'src/app/modules/shared/validators/value-is-already-exists.validator';
+import { RentedAreaOverviewDialogComponent } from '../../dialog/rented-area-overview-dialog/rented-area-overview-dialog.component';
 import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
 import { FacilityType } from '../../dto/facility-type.enum';
 import { Facility, RentedArea } from '../../model/facility-configuration.model';
@@ -111,6 +112,14 @@ export class HotelFormOverviewComponent implements OnInit {
         Validators.required,
         valueIsAlreadyExistsValidator(this.getListOfNames()),
       ]);
+  }
+
+  openRentedAreaDialogComponent() {
+    const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
+      data: this._facility.rentedAreas,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   save() {

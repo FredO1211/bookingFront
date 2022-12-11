@@ -9,7 +9,7 @@ export interface Facility {
 }
 export interface RentedArea {
   name: string;
-  facilityType: RentedAreaType;
+  rentedAreaType: RentedAreaType;
   deafultPrice: number;
   maxGuestCount: number;
   arrivalHour: Time;

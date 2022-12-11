@@ -9,6 +9,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { DefaultPaginatorConfig } from 'src/app/modules/shared/service/config/default-paginator-configurtator.service';
 import { ConfirmDialogManager } from 'src/app/modules/shared/service/lost-data-confirm-dialog-manager.service';
 import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 import { FacilityFormDialogComponent } from '../../dialog/facility-form-dialog/facility-form-dialog.component';
@@ -24,7 +25,7 @@ export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
   @Output() addNewFacilityClick = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['type', 'facilityName', 'operations'];
+  displayedColumns: string[] = ['facilityName', 'type', 'operations'];
   buttonConfigGroup: ButtonConfig[] = [
     new ButtonConfig('palette.success.light', '+ Dodaj obiekt', () =>
       this.onNewFacilityClick()
@@ -38,20 +39,7 @@ export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.paginator._intl.itemsPerPageLabel = 'Elementów na stronie:';
-    this.paginator._intl.getRangeLabel = (page, pagesize, length) => {
-      let fromValue = '0';
-      let toValue = '';
-      if (length > 0) {
-        fromValue = (page * pagesize + 1).toString();
-        if (length % pagesize != 1 || (page + 1) * pagesize < length)
-          toValue =
-            '-' +
-            (length > pagesize * (page + 1) ? pagesize * (page + 1) : length);
-      }
-
-      return `${fromValue}${toValue} z ${length}`;
-    };
+    DefaultPaginatorConfig.init(this.paginator);
     this.dataService.setPaginator(this.paginator);
   }
 

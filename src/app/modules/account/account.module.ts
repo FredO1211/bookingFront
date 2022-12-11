@@ -25,6 +25,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { RentedAreaOverviewComponent } from './component/rented-area-overview/rented-area-overview.component';
+import { RentedAreaOverviewDialogComponent } from './dialog/rented-area-overview-dialog/rented-area-overview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FacilityFormComponent,
     HotelFormDialogComponent,
     HotelFormOverviewComponent,
+    RentedAreaOverviewComponent,
+    RentedAreaOverviewDialogComponent,
   ],
   imports: [
     CommonModule,
