@@ -22,7 +22,7 @@ export class FormGroupGenerator {
           Validators.min(1),
         ]),
         arrivalHour: new FormControl(),
-        arrivalDeparture: new FormControl(),
+        departureHour: new FormControl(),
       }),
     });
   }

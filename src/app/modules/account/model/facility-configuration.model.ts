@@ -13,5 +13,5 @@ export interface RentedArea {
   deafultPrice: number;
   maxGuestCount: number;
   arrivalHour: Time;
-  arrivalDeparture: Time;
+  departureHour: Time;
 }

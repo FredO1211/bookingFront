@@ -20,7 +20,15 @@ export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
   @Input('data') _data: RentedArea[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  DISPLAYED_COLUMNS: string[] = ['facilityName', 'type', 'operations'];
+  DISPLAYED_COLUMNS: string[] = [
+    'type',
+    'name',
+    'deafultPrice',
+    'maxGuestCount',
+    'arrivalHour',
+    'departureHour',
+    'operations',
+  ];
 
   constructor(
     public dataService: RentedAreaConfigurationDataService,
