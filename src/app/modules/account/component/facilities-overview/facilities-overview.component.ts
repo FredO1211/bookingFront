@@ -1,5 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogManager } from 'src/app/modules/shared/service/lost-data-confirm-dialog-manager.service';
 import { ChooseFacilityFormTypeDialogComponent } from '../../dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
@@ -12,8 +20,9 @@ import { FacilitiesConfigurationDataService } from '../../service/facilities-con
   templateUrl: './facilities-overview.component.html',
   styleUrls: ['./facilities-overview.component.scss'],
 })
-export class FacilityConfigFormComponent implements OnInit {
+export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
   @Output() addNewFacilityClick = new EventEmitter();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['type', 'facilityName', 'operations'];
   buttonConfigGroup: ButtonConfig[] = [
@@ -27,6 +36,24 @@ export class FacilityConfigFormComponent implements OnInit {
     public dataService: FacilitiesConfigurationDataService,
     private confirmDialogManager: ConfirmDialogManager
   ) {}
+
+  ngAfterViewInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Elementów na stronie:';
+    this.paginator._intl.getRangeLabel = (page, pagesize, length) => {
+      let fromValue = '0';
+      let toValue = '';
+      if (length > 0) {
+        fromValue = (page * pagesize + 1).toString();
+        if (length % pagesize != 1 || (page + 1) * pagesize < length)
+          toValue =
+            '-' +
+            (length > pagesize * (page + 1) ? pagesize * (page + 1) : length);
+      }
+
+      return `${fromValue}${toValue} z ${length}`;
+    };
+    this.dataService.setPaginator(this.paginator);
+  }
 
   ngOnInit(): void {}
 

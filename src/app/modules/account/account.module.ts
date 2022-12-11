@@ -24,6 +24,7 @@ import { HotelFormOverviewComponent } from './component/multi-rented-form/multi-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatTooltipModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
   ],
 })
 export class AccountModule {}

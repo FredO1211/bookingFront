@@ -1,31 +1,31 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Facility } from '../model/facility-configuration.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FacilitiesConfigurationDataService extends DataSource<Facility> {
+export class FacilitiesConfigurationDataService {
   private data: Facility[] = [];
-  private data$ = new BehaviorSubject(this.data);
-
-  connect(): Observable<readonly Facility[]> {
-    return this.data$.asObservable();
-  }
-  disconnect(): void {}
+  private dataMatTable = new MatTableDataSource(this.data);
 
   insert(toInsert: Facility) {
     this.data.push(toInsert);
-    this.data$.next(this.data);
+    this.dataMatTable.data = this.data;
   }
 
-  getData$(): Observable<Facility[]> {
-    return this.data$.asObservable();
+  getDataMatTableData(): MatTableDataSource<Facility> {
+    return this.dataMatTable;
+  }
+  setPaginator(paginator: MatPaginator) {
+    this.dataMatTable.paginator = paginator;
   }
 
   removeByIndex(index: number) {
     this.data.splice(index, 1);
-    this.data$.next(this.data);
+    this.dataMatTable.data = this.data;
   }
 }
