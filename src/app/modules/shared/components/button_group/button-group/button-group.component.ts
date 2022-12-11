@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ButtonGroupConfig } from '../../../dto/config/button-group-config';
+import { ButtonConfig } from '../../../dto/config/button-group-config';
 
 @Component({
   selector: 'button-group',
@@ -7,7 +7,7 @@ import { ButtonGroupConfig } from '../../../dto/config/button-group-config';
   styleUrls: ['./button-group.component.scss'],
 })
 export class ButtonGroupComponent implements OnInit {
-  @Input('config') _config: ButtonGroupConfig[];
+  @Input('config') _config: ButtonConfig[];
 
   constructor() {}
 

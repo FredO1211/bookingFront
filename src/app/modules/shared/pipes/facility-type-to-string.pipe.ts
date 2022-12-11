@@ -6,7 +6,6 @@ import { FacilityType } from '../../account/dto/facility-type.enum';
 })
 export class FacilityTypeToStringPipe implements PipeTransform {
   transform(value: FacilityType): String {
-    debugger;
     switch (value) {
       case FacilityType.MULTI_RENTED_FACILITY.valueOf():
         return 'Obiekt wynajmowany na pokoje';

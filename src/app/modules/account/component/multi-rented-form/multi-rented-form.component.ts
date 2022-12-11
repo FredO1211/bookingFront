@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
-import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
 import { valueIsAlreadyExistsValidator } from 'src/app/modules/shared/validators/value-is-already-exists.validator';
 import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
@@ -23,7 +23,7 @@ export class HotelFormOverviewComponent implements OnInit {
   @Input() _facility: Facility;
   @Output() closeEmmiter = new EventEmitter();
 
-  facilityButtonConfig: ButtonGroupConfig[];
+  facilityButtonConfig: ButtonConfig[];
 
   configureButtonDisability = new BehaviorSubject(false);
 
@@ -63,7 +63,7 @@ export class HotelFormOverviewComponent implements OnInit {
     );
 
     this.facilityButtonConfig = [
-      new ButtonGroupConfig(
+      new ButtonConfig(
         'success',
         '+ Dodaj',
         () => {
@@ -78,9 +78,9 @@ export class HotelFormOverviewComponent implements OnInit {
     return this._facility.rentedAreas.map((f) => f.name).join(', ');
   }
 
-  dialogButtonConfig: ButtonGroupConfig[] = [
-    new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
-    new ButtonGroupConfig(
+  dialogButtonConfig: ButtonConfig[] = [
+    new ButtonConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
+    new ButtonConfig(
       'success',
       'Zapisz',
       () => this.save(),

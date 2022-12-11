@@ -3,7 +3,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
-import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
 import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
 import { ConfigGeneratorService } from '../../service/config-generator.service';
@@ -20,9 +20,9 @@ export class FacilityFormDialogComponent implements OnInit {
     type: new FormControl(),
   });
 
-  buttonGroupConfig: ButtonGroupConfig[] = [
-    new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
-    new ButtonGroupConfig('success', '+ Dodaj', () => this.save()),
+  buttonGroupConfig: ButtonConfig[] = [
+    new ButtonConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
+    new ButtonConfig('success', '+ Dodaj', () => this.save()),
   ];
 
   constructor(

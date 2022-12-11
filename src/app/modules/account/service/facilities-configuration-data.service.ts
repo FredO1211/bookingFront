@@ -23,4 +23,9 @@ export class FacilitiesConfigurationDataService extends DataSource<Facility> {
   getData$(): Observable<Facility[]> {
     return this.data$.asObservable();
   }
+
+  removeByIndex(index: number) {
+    this.data.splice(index, 1);
+    this.data$.next(this.data);
+  }
 }

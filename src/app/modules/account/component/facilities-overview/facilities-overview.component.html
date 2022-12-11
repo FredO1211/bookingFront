@@ -1,10 +1,5 @@
 <button-group [config]="buttonConfigGroup"></button-group>
-<table
-  multiTemplateDataRows
-  mat-table
-  class="mat-elevation-z8"
-  [dataSource]="dataService"
->
+<table mat-table class="mat-elevation-z8" [dataSource]="dataService">
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef>Typ</th>
     <td mat-cell *matCellDef="let element">
@@ -18,8 +13,8 @@
   </ng-container>
 
   <ng-container matColumnDef="operations">
-    <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let index = index">
       <div class="flex-container">
         <div class="button-container">
           <button
@@ -41,6 +36,7 @@
         </div>
         <div class="button-container">
           <button
+            (click)="remove(index)"
             mat-mini-fab
             color="warn"
             aria-label="Example icon button with a filter list icon"
