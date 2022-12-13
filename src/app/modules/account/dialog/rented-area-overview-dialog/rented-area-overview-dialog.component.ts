@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfirmDialogConfig } from 'src/app/modules/shared/dto/config/confirm-dialog-config';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { RentedArea } from '../../model/facility-configuration.model';
 
 @Component({
@@ -9,7 +9,22 @@ import { RentedArea } from '../../model/facility-configuration.model';
   styleUrls: ['./rented-area-overview-dialog.component.scss'],
 })
 export class RentedAreaOverviewDialogComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public _data: RentedArea[]) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public _data: RentedArea[],
+    private ownReferences: MatDialogRef<RentedAreaOverviewDialogComponent>
+  ) {}
+
+  buttonConfigGroup: ButtonConfig[] = [
+    {
+      color: 'warn',
+      label: 'Zamknij',
+      callback: () => this.closeDialog(),
+    },
+  ];
 
   ngOnInit(): void {}
+
+  closeDialog() {
+    this.ownReferences.close();
+  }
 }

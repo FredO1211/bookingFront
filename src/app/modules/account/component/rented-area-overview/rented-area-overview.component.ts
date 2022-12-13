@@ -37,6 +37,7 @@ export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     DefaultPaginatorConfig.init(this.paginator);
+    this.dataService.setPaginator(this.paginator);
   }
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
     this.confirmDialogManager.open({
       header: 'Czy usunąć obiekt?',
       content:
-        'Usunięcie spowoduje nieodrwacalną utratę konfiguracji obiektu. Czy kontynuować?',
+        'Usunięcie spowoduje nieodrwacalną utratę konfiguracji pokoju. Czy kontynuować?',
       confirmButtonConfig: [
         {
           color: 'accent',

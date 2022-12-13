@@ -117,7 +117,7 @@ export class HotelFormOverviewComponent implements OnInit {
   openRentedAreaDialogComponent() {
     const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
       data: this._facility.rentedAreas,
-      width: '900px',
+      width: '950px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {});

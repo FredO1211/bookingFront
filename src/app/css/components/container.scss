@@ -55,6 +55,12 @@
   }
 }
 
+.flex-container {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 button-group {
   width: 100%;
 }
