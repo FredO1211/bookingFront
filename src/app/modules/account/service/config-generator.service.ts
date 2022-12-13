@@ -10,7 +10,7 @@ export class ConfigGeneratorService {
 
   getFacilityFormConfigForHotel(): FacilityFormConfig {
     return {
-      facilityTypes: [
+      rentedAreaTypes: [
         { name: 'Pokój', type: RentedAreaType.ROOM },
         { name: 'Apartament', type: RentedAreaType.APARTMENT },
       ],
@@ -19,7 +19,7 @@ export class ConfigGeneratorService {
 
   getDefaultFacilityFormConfig(): FacilityFormConfig {
     return {
-      facilityTypes: [
+      rentedAreaTypes: [
         { name: 'Domek wypoczynkowy', type: RentedAreaType.BUNGALOW },
         { name: 'Pokój', type: RentedAreaType.ROOM },
         { name: 'Apartament', type: RentedAreaType.APARTMENT },

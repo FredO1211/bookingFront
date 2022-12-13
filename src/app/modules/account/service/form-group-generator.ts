@@ -19,7 +19,7 @@ export class FormGroupGenerator {
           Validators.required,
           valueIsAlreadyExistsValidator(listOfUniqueRooms),
         ]),
-        facilityType: new FormControl('', Validators.required),
+        rentedAreaType: new FormControl('', Validators.required),
         deafultPrice: new FormControl(),
         maxGuestCount: new FormControl(0, [
           Validators.required,

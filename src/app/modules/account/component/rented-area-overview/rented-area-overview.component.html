@@ -7,7 +7,7 @@
     <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef>Typ</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.rentedAreaType }}
+        {{ element.rentedAreaType | rentedAreaTypeToString }}
       </td>
     </ng-container>
 
@@ -18,21 +18,29 @@
 
     <ng-container matColumnDef="deafultPrice">
       <th mat-header-cell *matHeaderCellDef>Domyślna cena</th>
-      <td mat-cell *matCellDef="let element">{{ element.deafultPrice }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.deafultPrice | emptyToPause }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="maxGuestCount">
       <th mat-header-cell *matHeaderCellDef>Maks. ilość gości</th>
-      <td mat-cell *matCellDef="let element">{{ element.maxGuestCount }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.maxGuestCount | emptyToPause }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="arrivalHour">
       <th mat-header-cell *matHeaderCellDef>Przyjazd od</th>
-      <td mat-cell *matCellDef="let element">{{ element.arrivalHour }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.arrivalHour | emptyToPause }}
+      </td>
     </ng-container>
     <ng-container matColumnDef="departureHour">
       <th mat-header-cell *matHeaderCellDef>Wyjazd do</th>
-      <td mat-cell *matCellDef="let element">{{ element.departureHour }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.departureHour | emptyToPause }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="operations">

@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
 import { CurrencyInputFormatDirective } from './directives/currency-input-format.directive';
 import { FacilityTypeToStringPipe } from './pipes/facility-type-to-string.pipe';
+import { EmptyToPausePipe } from './pipes/empty-to-pause.pipe';
+import { RentedAreaTypeToStringPipe } from './pipes/rented-area-type-to-string.pipe';
 
 @NgModule({
   exports: [
@@ -18,6 +20,8 @@ import { FacilityTypeToStringPipe } from './pipes/facility-type-to-string.pipe';
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
     FacilityTypeToStringPipe,
+    EmptyToPausePipe,
+    RentedAreaTypeToStringPipe,
   ],
   declarations: [
     ButtonGroupComponent,
@@ -25,6 +29,8 @@ import { FacilityTypeToStringPipe } from './pipes/facility-type-to-string.pipe';
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
     FacilityTypeToStringPipe,
+    EmptyToPausePipe,
+    RentedAreaTypeToStringPipe,
   ],
   imports: [
     CommonModule,
