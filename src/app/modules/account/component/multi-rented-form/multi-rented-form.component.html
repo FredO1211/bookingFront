@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Skonfiguruj swój ośrodek</h2>
 <mat-card class="hotel-overview-container">
   <form [formGroup]="formGroup" style="width: 80%">
-    <mat-form-field appearance="outline" class="mat-form-field__clear_padding">
+    <mat-form-field appearance="outline">
       <mat-label>Nazwa hotelu</mat-label>
       <input
         id="name"
@@ -13,7 +13,11 @@
         type="text"
         matInput
         formControlName="facilityName"
+        required
       />
+      <mat-error *ngIf="facilityNameControl?.invalid">
+        {{ getMessageForNameControl() }}
+      </mat-error>
     </mat-form-field>
   </form>
   <mat-card-subtitle

@@ -19,6 +19,9 @@ export class FacilitiesConfigurationDataService {
   getDataMatTableData(): MatTableDataSource<Facility> {
     return this.dataMatTable;
   }
+  getData(): Facility[] {
+    return this.data;
+  }
   setPaginator(paginator: MatPaginator) {
     this.dataMatTable.paginator = paginator;
   }

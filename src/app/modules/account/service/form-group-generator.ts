@@ -4,16 +4,20 @@ import { Facility } from '../model/facility-configuration.model';
 
 export class FormGroupGenerator {
   static getFormGroupForHotelForm(
-    listOfUniqueElements: string[],
-    facilities?: Facility
+    listOfUniqueFacilities: string[],
+    listOfUniqueRooms: string[],
+    facility?: Facility
   ): FormGroup {
     return new FormGroup({
-      facilityName: new FormControl(facilities ? facilities.facilityName : ''),
-      facilityType: new FormControl(facilities ? facilities.facilityType : ''),
+      facilityName: new FormControl(facility ? facility.facilityName : '', [
+        Validators.required,
+        valueIsAlreadyExistsValidator(listOfUniqueFacilities),
+      ]),
+      facilityType: new FormControl(facility ? facility.facilityType : ''),
       facility: new FormGroup({
         name: new FormControl('', [
           Validators.required,
-          valueIsAlreadyExistsValidator(listOfUniqueElements),
+          valueIsAlreadyExistsValidator(listOfUniqueRooms),
         ]),
         facilityType: new FormControl('', Validators.required),
         deafultPrice: new FormControl(),

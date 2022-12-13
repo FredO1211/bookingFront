@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ButtonsDisabilityManageService {
   private newFacilityButtonDisability$ = new BehaviorSubject(true);
   private addNewHotelFacilityFormStatusSubscription: Subscription;
 
-  initAddNewHotelFacilityButtonDisabilityFollowing(formGroup: FormGroup) {
+  initNewHook(formGroup: FormGroup | FormControl) {
     this.addNewHotelFacilityFormStatusSubscription =
       formGroup.statusChanges.subscribe((result) => {
         if (result != this.addNewHotelFacilityFormPreviousStatus) {
@@ -25,11 +25,11 @@ export class ButtonsDisabilityManageService {
       });
   }
 
-  getAddNewHotelFacilityButtonDisability$(): Observable<boolean> {
+  getButtonDisability$(): Observable<boolean> {
     return this.newFacilityButtonDisability$.asObservable();
   }
 
-  closeAddNewHotelFacilityButtonDisabilityFollowing() {
+  unfollow() {
     this.addNewHotelFacilityFormStatusSubscription.unsubscribe();
   }
 }
