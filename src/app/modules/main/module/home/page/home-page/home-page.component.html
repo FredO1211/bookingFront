@@ -3,11 +3,17 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="2">
     <mat-card class="demo-inline-calendar-card">
-      <mat-calendar></mat-calendar>
+      <mat-calendar
+        (selectedChange)="onDateChange($event)"
+        [selected]="selectedDate"
+      ></mat-calendar>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="2" [rowspan]="4">
-    <week-overview class="component-container"></week-overview>
+    <week-overview
+      [data]="weekOverviewData"
+      class="component-container"
+    ></week-overview>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="3">4</mat-grid-tile>
 </mat-grid-list>

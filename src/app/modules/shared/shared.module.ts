@@ -9,6 +9,8 @@ import { LostDataConfirmDialogComponent } from './dialog/lost-data-confirm-dialo
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
 import { CurrencyInputFormatDirective } from './directives/currency-input-format.directive';
+import { MonthToStringConversionPipe } from './pipes/month-to-string-conversion.pipe';
+import { DayToStringConversionPipe } from './pipes/day-to-string-conversion.pipe';
 
 @NgModule({
   exports: [
@@ -16,12 +18,16 @@ import { CurrencyInputFormatDirective } from './directives/currency-input-format
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
+    MonthToStringConversionPipe,
+    DayToStringConversionPipe,
   ],
   declarations: [
     ButtonGroupComponent,
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
+    MonthToStringConversionPipe,
+    DayToStringConversionPipe,
   ],
   imports: [
     CommonModule,

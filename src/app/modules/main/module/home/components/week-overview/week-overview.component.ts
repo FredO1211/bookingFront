@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DayOverview } from '../../dto/day-overview.dto';
 
 @Component({
   selector: 'week-overview',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./week-overview.component.scss'],
 })
 export class WeekOverviewComponent implements OnInit {
+  @Input('data') _data: DayOverview[] | null;
   constructor() {}
 
   ngOnInit(): void {}

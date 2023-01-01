@@ -1,12 +1,17 @@
 <div class="day-cards-container">
-  <div class="day-card">
+  <div class="day-card" *ngFor="let day of _data">
     <div class="content">
       <div class="content-container">
         <h2 class="header-day-number">
-          27
-          <span class="header-month">Styczeń 2023</span>
+          {{ day?.date?.getDate() }}
+          <span class="header-month"
+            >{{ day?.date?.getMonth() | monthToString }}
+            {{ day?.date?.getFullYear() }}</span
+          >
         </h2>
-        <small class="day-of-week-name">Poniedziałek</small>
+        <small class="day-of-week-name">{{
+          day?.date?.getDay() | dayToString
+        }}</small>
         <div class="info-container">
           <div class="arival-info-container">
             <mat-icon
@@ -14,7 +19,7 @@
               aria-label="Przyjazdy"
               fontIcon="login"
             ></mat-icon>
-            x4
+            x{{ day?.arivalCount }}
           </div>
           <div class="arival-info-container">
             <mat-icon
@@ -22,13 +27,10 @@
               aria-label="Wyjazdy"
               fontIcon="logout"
             ></mat-icon>
-            x5
+            x{{ day?.departureCount }}
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="day-card"></div>
-  <div class="day-card"></div>
-  <div class="day-card"></div>
 </div>
