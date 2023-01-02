@@ -1,7 +1,8 @@
-<mat-grid-list cols="3" rowHeight="19.8%">
-  <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: red">
+<mat-grid-list cols="3" rowHeight="16.5%">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <img height="60%" src="/assets/logo_black.png" alt="" srcset="" />
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="2">
+  <mat-grid-tile [colspan]="1" [rowspan]="3">
     <mat-card class="demo-inline-calendar-card">
       <mat-calendar
         (selectedChange)="onDateChange($event)"
@@ -9,11 +10,17 @@
       ></mat-calendar>
     </mat-card>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="4">
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
     <week-overview
       [data]="weekOverviewData"
       class="component-container"
     ></week-overview>
   </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="3">
+    <guest-arrival-overview
+      class="component-container"
+    ></guest-arrival-overview>
+  </mat-grid-tile>
+
   <mat-grid-tile [colspan]="1" [rowspan]="3">4</mat-grid-tile>
 </mat-grid-list>
