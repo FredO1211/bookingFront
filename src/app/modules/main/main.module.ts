@@ -8,6 +8,7 @@ import { AboutModule } from './module/about/about.module';
 import { MainSidenavComponent } from './component/main-sidenav/main-sidenav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeModule } from './module/home/home.module';
+import { CalendarModule } from './module/calendar/calendar.module';
 
 @NgModule({
   declarations: [MainPageComponent, MainSidenavComponent],
@@ -19,6 +20,7 @@ import { HomeModule } from './module/home/home.module';
     AboutModule,
     MatToolbarModule,
     HomeModule,
+    CalendarModule,
   ],
 })
 export class MainModule {}
