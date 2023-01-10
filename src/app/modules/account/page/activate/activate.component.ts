@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 
 @Component({
   selector: 'app-activate',
@@ -14,22 +14,18 @@ export class ActivateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getButtonGroupConfig(): ButtonGroupConfig[] {
-    const configList: ButtonGroupConfig[] = [];
+  getButtonGroupConfig(): ButtonConfig[] {
+    const configList: ButtonConfig[] = [];
     configList.push(
-      new ButtonGroupConfig('warn', 'Anuluj', () => this.closeModal())
+      new ButtonConfig('warn', 'Anuluj', () => this.closeModal())
     );
     configList.push(
-      new ButtonGroupConfig('accent', 'Cofnij', () =>
-        this.scrollToPreviousPage()
-      )
+      new ButtonConfig('accent', 'Cofnij', () => this.scrollToPreviousPage())
     );
     configList.push(
-      new ButtonGroupConfig('primary', 'Dalej', () => this.scrollToNextPage())
+      new ButtonConfig('primary', 'Dalej', () => this.scrollToNextPage())
     );
-    configList.push(
-      new ButtonGroupConfig('green', 'Zapisz', () => this.save())
-    );
+    configList.push(new ButtonConfig('green', 'Zapisz', () => this.save()));
 
     return configList;
   }

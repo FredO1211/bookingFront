@@ -1,0 +1,4 @@
+export enum FacilityType {
+  MULTI_RENTED_FACILITY,
+  SINGLE_RENTED_FACILITY,
+}

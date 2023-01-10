@@ -8,7 +8,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
-import { FacilityConfigFormComponent } from './component/facility-config-form/facility-config-list.component';
+import { FacilityConfigFormComponent } from './component/facilities-overview/facilities-overview.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
@@ -20,8 +20,13 @@ import { CoreModule } from '../core/core.module';
 import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
 import { FacilityFormComponent } from './component/facility-form/facility-form.component';
 import { HotelFormDialogComponent } from './dialog/hotel-form-dialog/hotel-form-dialog.component';
-import { HotelFormOverviewComponent } from './component/hotel-form-overview/hotel-form-overview.component';
+import { HotelFormOverviewComponent } from './component/multi-rented-form/multi-rented-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { RentedAreaOverviewComponent } from './component/rented-area-overview/rented-area-overview.component';
+import { RentedAreaOverviewDialogComponent } from './dialog/rented-area-overview-dialog/rented-area-overview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FacilityFormComponent,
     HotelFormDialogComponent,
     HotelFormOverviewComponent,
+    RentedAreaOverviewComponent,
+    RentedAreaOverviewDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +58,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatCardModule,
     MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
+    MatPaginatorModule,
   ],
 })
 export class AccountModule {}

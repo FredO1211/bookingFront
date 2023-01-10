@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-export class ButtonGroupConfig {
+export class ButtonConfig {
   constructor(
     public color: string,
     public label: string,

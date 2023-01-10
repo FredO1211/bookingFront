@@ -1,9 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
-import { ButtonGroupConfig } from 'src/app/modules/shared/dto/config/button-group-config';
-import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hotel-form-dialog',
@@ -11,50 +7,15 @@ import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-di
   styleUrls: ['./hotel-form-dialog.component.scss'],
 })
 export class HotelFormDialogComponent implements OnInit {
-  configureButtonDisability = new BehaviorSubject(false);
-
-  constructor(
-    private ownReferences: MatDialogRef<HotelFormDialogComponent>,
-    private dialog: MatDialog
-  ) {}
+  constructor(private ownReferences: MatDialogRef<HotelFormDialogComponent>) {}
 
   ngOnInit(): void {}
 
-  dialogButtonConfig: ButtonGroupConfig[] = [
-    new ButtonGroupConfig('warn', 'Zamknij', () => this.openLoseDataDialog()),
-    new ButtonGroupConfig(
-      'success',
-      'Zapisz',
-      () => this.save(),
-      this.configureButtonDisability
-    ),
-  ];
-
-  facilityButtonConfig: ButtonGroupConfig[] = [
-    new ButtonGroupConfig('success', '+ Dodaj', () =>
-      this.openLoseDataDialog()
-    ),
-  ];
-
-  private openLoseDataDialog() {
-    const dialogRef = this.dialog.open(LostDataConfirmDialogComponent, {
-      width: '400px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result != null) {
-        if (result == ConfirmDialogStatus.CONFIRM) {
-          this.close();
-        }
-      }
-    });
-  }
-
   save() {
-    this.close();
+    this.closeDialog();
   }
 
-  close(dialogResult?: any) {
+  closeDialog(dialogResult?: any) {
     this.ownReferences.close(dialogResult);
   }
 }
