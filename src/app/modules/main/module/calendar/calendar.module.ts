@@ -4,9 +4,11 @@ import { CalendarViewComponent } from './components/calendar-view/calendar-view.
 import { CalendarPageComponent } from './page/calendar-page/calendar-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { CalendarModePickerComponent } from './components/calendar-mode-picker/calendar-mode-picker.component';
+import { LegendComponent } from './components/legend/legend.component';
 
 @NgModule({
-  declarations: [CalendarPageComponent, CalendarViewComponent],
+  declarations: [CalendarPageComponent, CalendarViewComponent, CalendarModePickerComponent, LegendComponent],
   imports: [CommonModule, MatTabsModule, MatGridListModule],
 })
 export class CalendarModule {}
