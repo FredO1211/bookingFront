@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivateComponent } from './page/activate/activate.component';
-import { UserDataFormComponent } from './component/user-data-form/user-data-form.component';
+import { UserDataFormComponent } from './component/config-step__user-data-form/user-data-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
-import { CompanyDataFormComponent } from './component/company-data-form/company-data-form.component';
-import { FacilityConfigFormComponent } from './component/facilities-overview/facilities-overview.component';
+import { CompanyDataFormComponent } from './component/config-step__company-data-form/company-data-form.component';
+import { FacilityConfigFormComponent } from './component/config-step__facilities-overview/facilities-overview.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FacilityFormDialogComponent } from './dialog/facility-form-dialog/facility-form-dialog.component';
+import { FullyRentedFacilityFormDialogComponent } from './dialog/fully-rented-facility-form-dialog/fully-rented-facility-form-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { CoreModule } from '../core/core.module';
-import { ChooseFacilityFormTypeDialogComponent } from './dialog/choose-facility-form-type-dialog/choose-facility-form-type-dialog.component';
-import { FacilityFormComponent } from './component/facility-form/facility-form.component';
-import { HotelFormDialogComponent } from './dialog/hotel-form-dialog/hotel-form-dialog.component';
-import { HotelFormOverviewComponent } from './component/multi-rented-form/multi-rented-form.component';
+import { FacilityFormTypePickerDialogComponent } from './dialog/facility-form-type-picker-dialog/facility-form-type-picker-dialog.component';
+import { FacilityFormComponent } from './component/rented-area-form/rented-area-form.component';
+import { PartlyRentedFacilityFormDialogComponent } from './dialog/partly-rented-facility-form-dialog/partly-rented-facility-form-dialog.component';
+import { HotelFormOverviewComponent } from './component/partly-rented-facility-form/partly-rented-facility-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,10 +34,10 @@ import { RentedAreaOverviewDialogComponent } from './dialog/rented-area-overview
     UserDataFormComponent,
     CompanyDataFormComponent,
     FacilityConfigFormComponent,
-    FacilityFormDialogComponent,
-    ChooseFacilityFormTypeDialogComponent,
+    FullyRentedFacilityFormDialogComponent,
+    FacilityFormTypePickerDialogComponent,
     FacilityFormComponent,
-    HotelFormDialogComponent,
+    PartlyRentedFacilityFormDialogComponent,
     HotelFormOverviewComponent,
     RentedAreaOverviewComponent,
     RentedAreaOverviewDialogComponent,

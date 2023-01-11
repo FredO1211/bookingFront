@@ -9,43 +9,34 @@ import { LostDataConfirmDialogComponent } from './dialog/lost-data-confirm-dialo
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollEndDetectDirective } from './directives/scroll-end-detect.directive';
 import { CurrencyInputFormatDirective } from './directives/currency-input-format.directive';
-<<<<<<< HEAD
 import { MonthToStringConversionPipe } from './pipes/month-to-string-conversion.pipe';
 import { DayToStringConversionPipe } from './pipes/day-to-string-conversion.pipe';
-=======
 import { FacilityTypeToStringPipe } from './pipes/facility-type-to-string.pipe';
 import { EmptyToPausePipe } from './pipes/empty-to-pause.pipe';
 import { RentedAreaTypeToStringPipe } from './pipes/rented-area-type-to-string.pipe';
->>>>>>> master
 
 @NgModule({
-  exports: [
-    ButtonGroupComponent,
-    LostDataConfirmDialogComponent,
-    ScrollEndDetectDirective,
-    CurrencyInputFormatDirective,
-<<<<<<< HEAD
-    MonthToStringConversionPipe,
-    DayToStringConversionPipe,
-=======
-    FacilityTypeToStringPipe,
-    EmptyToPausePipe,
-    RentedAreaTypeToStringPipe,
->>>>>>> master
-  ],
   declarations: [
     ButtonGroupComponent,
     LostDataConfirmDialogComponent,
     ScrollEndDetectDirective,
     CurrencyInputFormatDirective,
-<<<<<<< HEAD
     MonthToStringConversionPipe,
     DayToStringConversionPipe,
-=======
     FacilityTypeToStringPipe,
     EmptyToPausePipe,
     RentedAreaTypeToStringPipe,
->>>>>>> master
+  ],
+  exports: [
+    ButtonGroupComponent,
+    LostDataConfirmDialogComponent,
+    ScrollEndDetectDirective,
+    CurrencyInputFormatDirective,
+    MonthToStringConversionPipe,
+    DayToStringConversionPipe,
+    FacilityTypeToStringPipe,
+    EmptyToPausePipe,
+    RentedAreaTypeToStringPipe,
   ],
   imports: [
     CommonModule,
