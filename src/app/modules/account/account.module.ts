@@ -20,7 +20,6 @@ import { CoreModule } from '../core/core.module';
 import { FacilityFormTypePickerDialogComponent } from './dialog/facility-form-type-picker-dialog/facility-form-type-picker-dialog.component';
 import { FacilityFormComponent } from './component/rented-area-form/rented-area-form.component';
 import { PartlyRentedFacilityFormDialogComponent } from './dialog/partly-rented-facility-form-dialog/partly-rented-facility-form-dialog.component';
-import { HotelFormOverviewComponent } from './component/partly-rented-facility-form/partly-rented-facility-form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -38,7 +37,6 @@ import { RentedAreaOverviewDialogComponent } from './dialog/rented-area-overview
     FacilityFormTypePickerDialogComponent,
     FacilityFormComponent,
     PartlyRentedFacilityFormDialogComponent,
-    HotelFormOverviewComponent,
     RentedAreaOverviewComponent,
     RentedAreaOverviewDialogComponent,
   ],
