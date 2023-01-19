@@ -1,0 +1,36 @@
+.calendar-days-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.calendar-day-square {
+  width: calc(14.28% - 1px);
+  height: calc(16.66% - 1px);
+  border: 1px solid rgb(186 186 190);
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+}
+
+.dark {
+  background-color: #ebebeb;
+}
+.selected {
+}
+
+.bold {
+  font-weight: bold;
+}
+.small {
+  font-size: 12px;
+  color: rgb(102, 102, 102);
+}
+.text-align__left {
+  text-align: left;
+  padding-left: 5px;
+}

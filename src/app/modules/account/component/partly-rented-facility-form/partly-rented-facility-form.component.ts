@@ -22,7 +22,7 @@ import { FacilitiesConfigurationDataService } from '../../service/facilities-con
 import { FormGroupGenerator } from '../../service/form-group-generator';
 
 @Component({
-  selector: 'multi-rented-form',
+  selector: 'partly-rented-form',
   templateUrl: './partly-rented-facility-form.component.html',
   styleUrls: ['./partly-rented-facility-form.component.scss'],
 })

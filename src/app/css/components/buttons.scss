@@ -5,6 +5,10 @@
     left: 10px;
     top: 46px;
     z-index: 1;
+    opacity: 0.5;
+    &:hover {
+      opacity: 5;
+    }
   }
   &__sidenav-btn {
     width: 100%;

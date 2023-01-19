@@ -1,3 +1,13 @@
-<div style="width: 100px; height: 100px">
-  {{ initalDay }}
+<div class="calendar-days-container">
+  <div
+    class="calendar-day-square"
+    [ngClass]="{ dark: day.displayDark }"
+    *ngFor="let day of displayedDays"
+    (mouseenter)="onMouseEnter(day)"
+  >
+    <h3 class="text-align__left">
+      <span class="bold">{{ day.day }} </span
+      ><span class="small">{{ day.month }}</span>
+    </h3>
+  </div>
 </div>

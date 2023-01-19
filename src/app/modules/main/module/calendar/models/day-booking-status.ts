@@ -3,6 +3,7 @@ export interface DisplayedDay {
   dayOfWeek: string;
   month: string;
   year: number;
+  displayDark: boolean;
 }
 
 export interface DayBookingStatus extends DisplayedDay {

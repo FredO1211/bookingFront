@@ -1,11 +1,11 @@
 <mat-grid-list cols="8" rowHeight="19.8%">
-  <mat-grid-tile style="border: 1px solid black" [colspan]="8" [rowspan]="1">
-    <calendar-mode-picker></calendar-mode-picker>
-  </mat-grid-tile>
-  <mat-grid-tile style="border: 1px solid black" [colspan]="5" [rowspan]="4">
+  <mat-grid-tile [colspan]="5" [rowspan]="5">
     <calendar-view></calendar-view>
   </mat-grid-tile>
-  <mat-grid-tile style="border: 1px solid black" [colspan]="3" [rowspan]="4">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <calendar-mode-picker></calendar-mode-picker>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="4">
     <calendar-legend></calendar-legend>
   </mat-grid-tile>
 </mat-grid-list>
