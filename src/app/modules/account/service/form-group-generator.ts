@@ -30,4 +30,23 @@ export class FormGroupGenerator {
       }),
     });
   }
+
+  static getFormGroupForFullyRentedFacility(
+    listOfUniqueRooms: string[]
+  ): FormGroup {
+    return new FormGroup({
+      name: new FormControl('', [
+        Validators.required,
+        valueIsAlreadyExistsValidator(listOfUniqueRooms),
+      ]),
+      rentedAreaType: new FormControl('', Validators.required),
+      deafultPrice: new FormControl(),
+      maxGuestCount: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
+      ]),
+      arrivalHour: new FormControl(),
+      departureHour: new FormControl(),
+    });
+  }
 }

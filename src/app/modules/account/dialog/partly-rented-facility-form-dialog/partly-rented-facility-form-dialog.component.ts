@@ -23,7 +23,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   facilityButtonConfig: ButtonConfig[];
   facilityFormConfig: FacilityFormConfig;
 
-  _facility: Facility;
+  facility: Facility;
   formGroup: FormGroup;
   facilityFormGroup: FormGroup;
   facilityNameControl: FormControl;
@@ -40,8 +40,8 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this._facility == null) {
-      this._facility = {
+    if (this.facility == null) {
+      this.facility = {
         facilityName: '',
         facilityType: FacilityType.MULTI_RENTED_FACILITY,
         rentedAreas: [],
@@ -54,7 +54,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
     this.formGroup = FormGroupGenerator.getFormGroupForHotelForm(
       this.getListOfFacilities(),
       this.getListOfRoomNames(),
-      this._facility
+      this.facility
     );
 
     this.facilityFormGroup = this.formGroup.get('facility') as FormGroup;
@@ -102,11 +102,11 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   getFacilityNamesAsString(): string {
-    return this._facility.rentedAreas.map((f) => f.name).join(', ');
+    return this.facility.rentedAreas.map((f) => f.name).join(', ');
   }
 
   insertNewFacility(facility: RentedArea | any) {
-    this._facility.rentedAreas.push(facility);
+    this.facility.rentedAreas.push(facility);
     this.facilityFormGroup.get('name')?.reset();
     this.facilityFormGroup
       .get('name')
@@ -118,7 +118,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
 
   openRentedAreaDialogComponent() {
     const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
-      data: this._facility.rentedAreas,
+      data: this.facility.rentedAreas,
       width: '950px',
     });
 
@@ -135,7 +135,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   private getListOfRoomNames(): string[] {
-    return this._facility.rentedAreas.map((f) => f.name);
+    return this.facility.rentedAreas.map((f) => f.name);
   }
 
   private getListOfFacilities(): string[] {
