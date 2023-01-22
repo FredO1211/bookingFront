@@ -1,11 +1,16 @@
 <div class="calendar-days-container">
   <div
     class="calendar-day-square"
-    [ngClass]="{ dark: day.displayDark }"
-    *ngFor="let day of displayedDays"
-    (mouseenter)="onMouseEnter(day)"
+    [ngClass]="{
+      dark: day.displayDark,
+      selected: isInRange(i)
+    }"
+    *ngFor="let day of displayedDays; let i = index"
+    (mouseenter)="onMouseEnter(i)"
+    (mousedown)="startListening(i)"
+    (mouseup)="stopListening(i)"
   >
-    <h3 class="text-align__left">
+    <h3 class="text-align__left noselect">
       <span class="bold">{{ day.day }} </span
       ><span class="small">{{ day.month }}</span>
     </h3>

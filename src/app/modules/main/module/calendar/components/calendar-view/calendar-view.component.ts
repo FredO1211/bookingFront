@@ -11,6 +11,9 @@ import { CalendarDaysArrayGeneratorService } from './services/calendar-days-arra
 })
 export class CalendarViewComponent implements OnInit {
   displayedDays: DisplayedDay[];
+  selectedInedexRange: [number, number] = [-1, -1];
+
+  private isClicked: boolean = false;
 
   constructor(private daysArrayGenerator: CalendarDaysArrayGeneratorService) {}
 
@@ -27,7 +30,31 @@ export class CalendarViewComponent implements OnInit {
     this.displayedDays = this.daysArrayGenerator.generate(initalDay, 42);
   }
 
-  onMouseEnter(day: DisplayedDay) {
-    console.log(day.day);
+  onMouseEnter(i: number) {
+    if (this.isClicked) {
+      this.selectedInedexRange[1] = i;
+    }
+  }
+
+  isInRange(index: number) {
+    let min =
+      this.selectedInedexRange[1] > this.selectedInedexRange[0]
+        ? this.selectedInedexRange[0]
+        : this.selectedInedexRange[1];
+    let max =
+      this.selectedInedexRange[1] > this.selectedInedexRange[0]
+        ? this.selectedInedexRange[1]
+        : this.selectedInedexRange[0];
+
+    return index >= min && index <= max;
+  }
+
+  startListening(i: number) {
+    this.selectedInedexRange = [i, i];
+    this.isClicked = true;
+  }
+
+  stopListening(i: number) {
+    this.isClicked = false;
   }
 }

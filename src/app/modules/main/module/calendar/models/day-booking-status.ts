@@ -7,6 +7,7 @@ export interface DisplayedDay {
 }
 
 export interface DayBookingStatus extends DisplayedDay {
+  isSelected: boolean;
   bookings: [];
 }
 export interface CalendarBooking {
