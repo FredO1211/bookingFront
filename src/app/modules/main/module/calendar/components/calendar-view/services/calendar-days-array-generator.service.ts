@@ -19,6 +19,7 @@ export class CalendarDaysArrayGeneratorService {
         month: DateTools.convertMonthIntoMonthName(sourceDay.getMonth()),
         year: sourceDay.getFullYear(),
         displayDark: sourceDay.getMonth() % 2 == 1,
+        date: sourceDay,
       });
       sourceDay = DateTools.plusDays(sourceDay, 1);
     }

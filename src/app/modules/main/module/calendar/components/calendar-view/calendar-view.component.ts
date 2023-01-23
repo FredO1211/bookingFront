@@ -11,9 +11,10 @@ import { CalendarDaysArrayGeneratorService } from './services/calendar-days-arra
 })
 export class CalendarViewComponent implements OnInit {
   displayedDays: DisplayedDay[];
-  selectedInedexRange: [number, number] = [-1, -1];
 
+  private selectedInedexRange: [number, number] = [-1, -1];
   private isClicked: boolean = false;
+  private isThrottled: boolean = false;
 
   constructor(private daysArrayGenerator: CalendarDaysArrayGeneratorService) {}
 
@@ -36,6 +37,15 @@ export class CalendarViewComponent implements OnInit {
     }
   }
 
+  startListening(i: number) {
+    this.selectedInedexRange = [i, i];
+    this.isClicked = true;
+  }
+
+  stopListening() {
+    this.isClicked = false;
+  }
+
   isInRange(index: number) {
     let min =
       this.selectedInedexRange[1] > this.selectedInedexRange[0]
@@ -49,12 +59,31 @@ export class CalendarViewComponent implements OnInit {
     return index >= min && index <= max;
   }
 
-  startListening(i: number) {
-    this.selectedInedexRange = [i, i];
-    this.isClicked = true;
+  rewind(event: any) {
+    if (!this.isThrottled) {
+      this.isThrottled = true;
+      if (event.wheelDeltaY < 0) this.scrollDown();
+      else if (event.wheelDeltaY > 0) this.scrollUp();
+      setTimeout(() => {
+        this.isThrottled = false;
+      }, 1000);
+    }
   }
 
-  stopListening(i: number) {
-    this.isClicked = false;
+  private scrollUp() {
+    const initialDate = DateTools.minusDays(this.displayedDays[0].date, 7);
+    const newDaysBefore = this.daysArrayGenerator.generate(initialDate, 7);
+    this.displayedDays = newDaysBefore.concat(
+      this.displayedDays.slice(0, this.displayedDays.length - 7)
+    );
+  }
+  private scrollDown() {
+    debugger;
+    const initialDate = DateTools.plusDays(
+      this.displayedDays[this.displayedDays.length - 1].date,
+      1
+    );
+    const newDaysAfter = this.daysArrayGenerator.generate(initialDate, 7);
+    this.displayedDays = this.displayedDays.slice(7).concat(newDaysAfter);
   }
 }

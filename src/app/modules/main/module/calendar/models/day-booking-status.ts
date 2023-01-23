@@ -4,6 +4,7 @@ export interface DisplayedDay {
   month: string;
   year: number;
   displayDark: boolean;
+  date: Date;
 }
 
 export interface DayBookingStatus extends DisplayedDay {

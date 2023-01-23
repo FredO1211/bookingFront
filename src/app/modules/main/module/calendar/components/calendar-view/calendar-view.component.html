@@ -1,4 +1,4 @@
-<div class="calendar-days-container">
+<div class="calendar-days-container" (wheel)="rewind($event)">
   <div
     class="calendar-day-square"
     [ngClass]="{
@@ -8,7 +8,7 @@
     *ngFor="let day of displayedDays; let i = index"
     (mouseenter)="onMouseEnter(i)"
     (mousedown)="startListening(i)"
-    (mouseup)="stopListening(i)"
+    (mouseup)="stopListening()"
   >
     <h3 class="text-align__left noselect">
       <span class="bold">{{ day.day }} </span
