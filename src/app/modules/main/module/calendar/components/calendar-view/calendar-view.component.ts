@@ -76,14 +76,25 @@ export class CalendarViewComponent implements OnInit {
     this.displayedDays = newDaysBefore.concat(
       this.displayedDays.slice(0, this.displayedDays.length - 7)
     );
+    if (this.isClicked) {
+      this.selectedInedexRange[0] += 7;
+    } else {
+      this.selectedInedexRange[1] += 7;
+      this.selectedInedexRange[0] += 7;
+    }
   }
   private scrollDown() {
-    debugger;
     const initialDate = DateTools.plusDays(
       this.displayedDays[this.displayedDays.length - 1].date,
       1
     );
     const newDaysAfter = this.daysArrayGenerator.generate(initialDate, 7);
     this.displayedDays = this.displayedDays.slice(7).concat(newDaysAfter);
+    if (this.isClicked) {
+      this.selectedInedexRange[0] -= 7;
+    } else {
+      this.selectedInedexRange[1] -= 7;
+      this.selectedInedexRange[0] -= 7;
+    }
   }
 }

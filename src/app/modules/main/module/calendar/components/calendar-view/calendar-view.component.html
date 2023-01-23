@@ -1,4 +1,13 @@
 <div class="calendar-days-container" (wheel)="rewind($event)">
+  <header class="calendar-days-header">
+    <div class="day-name-container">Poniedziałek</div>
+    <div class="day-name-container">Wtorek</div>
+    <div class="day-name-container">Środa</div>
+    <div class="day-name-container">Czwartek</div>
+    <div class="day-name-container">Piątek</div>
+    <div class="day-name-container">Sobota</div>
+    <div class="day-name-container">Niedziela</div>
+  </header>
   <div
     class="calendar-day-square"
     [ngClass]="{
