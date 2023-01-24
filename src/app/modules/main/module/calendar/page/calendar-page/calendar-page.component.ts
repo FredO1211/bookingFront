@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar-page.component.scss'],
 })
 export class CalendarPageComponent implements OnInit {
+  selectedDaysRange: [Date | null, Date | null] = [null, null];
   constructor() {}
 
   ngOnInit(): void {}

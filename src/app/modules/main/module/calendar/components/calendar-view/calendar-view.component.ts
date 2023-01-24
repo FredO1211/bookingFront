@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DisplayedDay } from '../../models/day-booking-status';
 import { DateTools } from 'src/app/modules/shared/tools/date-tools';
 import { CalendarDaysArrayGeneratorService } from './services/calendar-days-array-generator.service';
@@ -10,6 +10,12 @@ import { CalendarDaysArrayGeneratorService } from './services/calendar-days-arra
   providers: [CalendarDaysArrayGeneratorService],
 })
 export class CalendarViewComponent implements OnInit {
+  @Input() selectedDaysRange: [Date | null, Date | null];
+  @Output() selectedDaysRangeChange = new EventEmitter<
+    [Date | null, Date | null]
+  >();
+  @Output() onSelectionChange = new EventEmitter();
+
   displayedDays: DisplayedDay[];
 
   private selectedInedexRange: [number, number] = [-1, -1];
@@ -40,10 +46,18 @@ export class CalendarViewComponent implements OnInit {
   startListening(i: number) {
     this.selectedInedexRange = [i, i];
     this.isClicked = true;
+    this.selectedDaysRange[0] = this.displayedDays[i].date;
   }
 
-  stopListening() {
+  stopListening(i: number) {
     this.isClicked = false;
+    this.selectedDaysRange[1] = this.displayedDays[i].date;
+    this.selectedDaysRange.sort((d1, d2) => {
+      if (d1 instanceof Date && d2 instanceof Date) {
+        return d1.getTime() > d2.getTime() ? 1 : -1;
+      } else return 1;
+    });
+    this.onSelectionChange.emit();
   }
 
   isInRange(index: number) {
