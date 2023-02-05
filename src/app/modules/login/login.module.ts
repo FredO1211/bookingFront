@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LoggerModule } from '../core/components/logger/logger.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     RegistationFormComponent,
   ],
   imports: [
+    CoreModule,
     PasswordStrengthMeterModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
@@ -25,6 +28,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    LoggerModule,
   ],
   exports: [LoginFormComponent],
 })

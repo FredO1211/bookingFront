@@ -14,6 +14,7 @@
         class="form_container transition_300_ms absolute"
         [class]="!loginVisible ? 'left__0_percent' : 'left__100_percent'"
         (toggle)="toggleForm()"
+        (registerUser)="registerUser($event)"
       ></registation-form>
     </div>
   </div>
