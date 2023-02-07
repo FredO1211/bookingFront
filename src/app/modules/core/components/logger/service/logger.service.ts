@@ -21,6 +21,14 @@ export class LoggerService {
     this.openSnackBar(message);
   }
 
+  logWarn(message: string) {
+    this.openSnackBar(message);
+  }
+
+  logError(message: string) {
+    this.openSnackBar(message);
+  }
+
   private openSnackBar(message: string) {
     this.snackBarReference = this.snackBar.open(message, 'OK', {
       horizontalPosition: this.horizontalPosition,

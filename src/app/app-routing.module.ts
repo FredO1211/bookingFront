@@ -5,7 +5,7 @@ import { LoginPageComponent } from './modules/login/page/login-page/login-page.c
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
-  { path: 'activate', component: ActivateComponent },
+  { path: 'activate/:id', component: ActivateComponent },
   {
     path: '',
     loadChildren: () =>

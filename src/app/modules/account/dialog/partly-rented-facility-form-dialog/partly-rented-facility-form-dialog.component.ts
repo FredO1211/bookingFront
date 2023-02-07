@@ -139,7 +139,13 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   private getListOfFacilities(): string[] {
-    return this.dataService.getData().map((d) => d.facilityName);
+    return this.dataService.getData().map((f) => {
+      if (f.facilityType === FacilityType.SINGLE_RENTED_FACILITY) {
+        return f.rentedAreas[0].name;
+      } else {
+        return f.facilityName;
+      }
+    });
   }
 
   private openLoseDataDialog() {

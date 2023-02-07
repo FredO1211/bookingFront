@@ -11,16 +11,20 @@ import { LoginModuleMapper } from './mapper';
 export class LoginService {
   constructor(private api: UserApi, private logger: LoggerService) {}
 
-  registerUser(registrationDto: RegistrationDto) {
+  registerUser(registrationDto: RegistrationDto, onsuccess?: VoidFunction) {
     const toSend = LoginModuleMapper.map(registrationDto);
     this.api.register(toSend).subscribe(
       (success) => {
-        debugger;
+        if (onsuccess) {
+          onsuccess();
+        }
         this.logger.logInfo(
           'Wysłaliśmy mail z linkiem aktywacyjnym. Proszę sprawdź skrzynkę pocztową'
         );
       },
-      (error) => {}
+      (error) => {
+        this.logger.logError('Wystąpił błąd');
+      }
     );
   }
 }

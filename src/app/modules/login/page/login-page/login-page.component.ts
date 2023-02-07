@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {}
 
   registerUser(registrationDto: RegistrationDto) {
-    this.service.registerUser(registrationDto);
+    this.service.registerUser(registrationDto, () => this.toggleForm());
   }
 
   toggleForm() {

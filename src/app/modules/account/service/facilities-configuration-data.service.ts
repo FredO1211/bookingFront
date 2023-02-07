@@ -1,7 +1,7 @@
-import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Injectable } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { FacilityType } from '../dto/facility-type.enum';
 import { Facility } from '../model/facility-configuration.model';
 
 @Injectable({
@@ -9,25 +9,48 @@ import { Facility } from '../model/facility-configuration.model';
 })
 export class FacilitiesConfigurationDataService {
   private data: Facility[] = [];
-  private dataMatTable = new MatTableDataSource(this.data);
+  private dataToDisplay: FacilityOverviewTableDTO[] = [];
+  private dataToDisplayTable = new MatTableDataSource(this.dataToDisplay);
 
   insert(toInsert: Facility) {
     this.data.push(toInsert);
-    this.dataMatTable.data = this.data;
+    this.refreshOverviewDataList();
   }
 
-  getDataMatTableData(): MatTableDataSource<Facility> {
-    return this.dataMatTable;
+  getDataMatTableData(): MatTableDataSource<FacilityOverviewTableDTO> {
+    return this.dataToDisplayTable;
   }
   getData(): Facility[] {
     return this.data;
   }
   setPaginator(paginator: MatPaginator) {
-    this.dataMatTable.paginator = paginator;
+    this.dataToDisplayTable.paginator = paginator;
   }
 
   removeByIndex(index: number) {
     this.data.splice(index, 1);
-    this.dataMatTable.data = this.data;
+    this.refreshOverviewDataList();
   }
+
+  private refreshOverviewDataList() {
+    Object.assign(
+      this.dataToDisplay,
+      this.data.map((d) => {
+        if (d.facilityType === FacilityType.MULTI_RENTED_FACILITY) {
+          return { name: d.facilityName, type: d.facilityType };
+        } else {
+          return {
+            name: d.rentedAreas[0].name,
+            type: d.rentedAreas[0].rentedAreaType,
+          };
+        }
+      })
+    );
+    this.dataToDisplayTable.data = this.dataToDisplay;
+  }
+}
+
+export interface FacilityOverviewTableDTO {
+  name: string;
+  type: FacilityType;
 }
