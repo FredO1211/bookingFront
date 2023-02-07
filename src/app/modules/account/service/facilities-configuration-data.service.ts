@@ -33,19 +33,19 @@ export class FacilitiesConfigurationDataService {
   }
 
   private refreshOverviewDataList() {
-    Object.assign(
-      this.dataToDisplay,
-      this.data.map((d) => {
-        if (d.facilityType === FacilityType.MULTI_RENTED_FACILITY) {
-          return { name: d.facilityName, type: d.facilityType };
-        } else {
-          return {
-            name: d.rentedAreas[0].name,
-            type: d.rentedAreas[0].rentedAreaType,
-          };
-        }
-      })
-    );
+    this.dataToDisplay = this.data.map((d) => {
+      if (d.facilityType === FacilityType.MULTI_RENTED_FACILITY) {
+        return {
+          name: d.facilityName,
+          type: FacilityType.MULTI_RENTED_FACILITY,
+        };
+      } else {
+        return {
+          name: d.rentedAreas[0].name,
+          type: FacilityType.SINGLE_RENTED_FACILITY,
+        };
+      }
+    });
     this.dataToDisplayTable.data = this.dataToDisplay;
   }
 }
