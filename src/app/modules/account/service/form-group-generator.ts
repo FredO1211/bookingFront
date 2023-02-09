@@ -32,21 +32,31 @@ export class FormGroupGenerator {
   }
 
   static getFormGroupForFullyRentedFacility(
-    listOfUniqueRooms: string[]
+    listOfUniqueRooms: string[],
+    facility: Facility
   ): FormGroup {
     return new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        valueIsAlreadyExistsValidator(listOfUniqueRooms),
-      ]),
-      rentedAreaType: new FormControl('', Validators.required),
-      deafultPrice: new FormControl(),
-      maxGuestCount: new FormControl(0, [
-        Validators.required,
-        Validators.min(1),
-      ]),
-      arrivalHour: new FormControl(),
-      departureHour: new FormControl(),
+      name: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].name : '',
+        [Validators.required, valueIsAlreadyExistsValidator(listOfUniqueRooms)]
+      ),
+      rentedAreaType: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].rentedAreaType : '',
+        Validators.required
+      ),
+      deafultPrice: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].deafultPrice : null
+      ),
+      maxGuestCount: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].maxGuestCount : 0,
+        [Validators.required, Validators.min(1)]
+      ),
+      arrivalHour: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].arrivalHour : null
+      ),
+      departureHour: new FormControl(
+        facility.rentedAreas[0] ? facility.rentedAreas[0].departureHour : null
+      ),
     });
   }
 }

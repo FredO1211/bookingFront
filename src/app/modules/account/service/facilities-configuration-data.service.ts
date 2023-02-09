@@ -20,9 +20,13 @@ export class FacilitiesConfigurationDataService {
   getDataMatTableData(): MatTableDataSource<FacilityOverviewTableDTO> {
     return this.dataToDisplayTable;
   }
-  getData(): Facility[] {
+  getFacilities(): Facility[] {
     return this.data;
   }
+  getFacilityByIndex(index: number): Facility {
+    return this.data[index];
+  }
+
   setPaginator(paginator: MatPaginator) {
     this.dataToDisplayTable.paginator = paginator;
   }

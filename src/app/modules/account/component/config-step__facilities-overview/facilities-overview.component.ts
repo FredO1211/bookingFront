@@ -14,6 +14,8 @@ import { ConfirmDialogManager } from 'src/app/modules/shared/service/lost-data-c
 import { FacilityFormTypePickerDialogComponent } from '../../dialog/facility-form-type-picker-dialog/facility-form-type-picker-dialog.component';
 import { FullyRentedFacilityFormDialogComponent } from '../../dialog/fully-rented-facility-form-dialog/fully-rented-facility-form-dialog.component';
 import { PartlyRentedFacilityFormDialogComponent } from '../../dialog/partly-rented-facility-form-dialog/partly-rented-facility-form-dialog.component';
+import { FacilityType } from '../../dto/facility-type.enum';
+import { Facility } from '../../model/facility-configuration.model';
 import { FacilitiesConfigurationDataService } from '../../service/facilities-configuration-data.service';
 
 @Component({
@@ -64,9 +66,10 @@ export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openAddFacilityFormDialog() {
+  openAddFacilityFormDialog(data?: Facility) {
     const dialogRef = this.dialog.open(FullyRentedFacilityFormDialogComponent, {
       width: '500px',
+      data: data,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -75,11 +78,12 @@ export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openAddHotelFormDialog() {
+  openAddHotelFormDialog(data?: Facility) {
     const dialogRef = this.dialog.open(
       PartlyRentedFacilityFormDialogComponent,
       {
         width: '600px',
+        data: data,
       }
     );
 
@@ -87,6 +91,15 @@ export class FacilityConfigFormComponent implements OnInit, AfterViewInit {
       if (result) {
       }
     });
+  }
+
+  edit(index: number) {
+    const data = this.dataService.getFacilityByIndex(index);
+    if (data.facilityType === FacilityType.MULTI_RENTED_FACILITY) {
+      this.openAddHotelFormDialog(data);
+    } else {
+      this.openAddFacilityFormDialog(data);
+    }
   }
 
   remove(index: number) {

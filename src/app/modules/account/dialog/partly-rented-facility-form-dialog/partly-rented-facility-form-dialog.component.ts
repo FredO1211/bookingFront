@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
@@ -36,15 +40,22 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
     private ownReferences: MatDialogRef<PartlyRentedFacilityFormDialogComponent>,
     private configGeneratorService: ConfigGeneratorService,
     private dataService: FacilitiesConfigurationDataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) private data: Facility
   ) {}
 
   ngOnInit(): void {
-    if (this.facility == null) {
+    if (this.data == null) {
       this.facility = {
         facilityName: '',
         facilityType: FacilityType.MULTI_RENTED_FACILITY,
         rentedAreas: [],
+      };
+    } else {
+      this.facility = {
+        facilityName: this.data.facilityName,
+        facilityType: FacilityType.MULTI_RENTED_FACILITY,
+        rentedAreas: this.data.rentedAreas,
       };
     }
 
@@ -139,7 +150,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   private getListOfFacilities(): string[] {
-    return this.dataService.getData().map((f) => {
+    return this.dataService.getFacilities().map((f) => {
       if (f.facilityType === FacilityType.SINGLE_RENTED_FACILITY) {
         return f.rentedAreas[0].name;
       } else {

@@ -1,6 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
@@ -34,25 +38,35 @@ export class FullyRentedFacilityFormDialogComponent
     private configGeneratorService: ConfigGeneratorService,
     private ownReferences: MatDialogRef<FullyRentedFacilityFormDialogComponent>,
     private confirmLostDataDialog: MatDialog,
-    private dataService: FacilitiesConfigurationDataService
+    private dataService: FacilitiesConfigurationDataService,
+    @Inject(MAT_DIALOG_DATA) private data: Facility
   ) {}
 
   ngOnInit(): void {
     this.facilityFormConfig =
       this.configGeneratorService.getDefaultFacilityFormConfig();
 
-    this.facilityFormGroup =
-      FormGroupGenerator.getFormGroupForFullyRentedFacility(
-        this.getListOfFacilities()
-      );
-
-    if (this.facility == null) {
+    if (this.data == null) {
       this.facility = {
         facilityName: '',
         facilityType: FacilityType.SINGLE_RENTED_FACILITY,
         rentedAreas: [],
       };
+    } else {
+      this.facility = {
+        facilityName: this.data.facilityName,
+        facilityType: FacilityType.SINGLE_RENTED_FACILITY,
+        rentedAreas: this.data.rentedAreas,
+      };
     }
+
+    this.facilityFormGroup =
+      FormGroupGenerator.getFormGroupForFullyRentedFacility(
+        this.getListOfFacilities(
+          this.facility.rentedAreas[0] ? this.facility.rentedAreas[0].name : ''
+        ),
+        this.facility
+      );
 
     this.saveDisabilityFollowingService.initNewHook(this.facilityFormGroup);
 
@@ -77,14 +91,17 @@ export class FullyRentedFacilityFormDialogComponent
     this.ownReferences.close(dialogResult);
   }
 
-  private getListOfFacilities(): string[] {
-    return this.dataService.getData().map((f) => {
-      if (f.facilityType === FacilityType.SINGLE_RENTED_FACILITY) {
-        return f.rentedAreas[0].name;
-      } else {
-        return f.facilityName;
-      }
-    });
+  private getListOfFacilities(except?: string): string[] {
+    return this.dataService
+      .getFacilities()
+      .map((f) => {
+        if (f.facilityType === FacilityType.SINGLE_RENTED_FACILITY) {
+          return f.rentedAreas[0].name;
+        } else {
+          return f.facilityName;
+        }
+      })
+      .filter((s) => s != except);
   }
 
   private openLoseDataDialog() {
