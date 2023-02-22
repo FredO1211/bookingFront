@@ -25,6 +25,13 @@ export class ButtonsDisabilityManageService {
       });
   }
 
+  updateHook(formGroup: FormGroup | FormControl) {
+    this.unfollow();
+    this.addNewHotelFacilityFormPreviousStatus = 'INVALID';
+    this.newFacilityButtonDisability$.next(true);
+    this.initNewHook(formGroup);
+  }
+
   getButtonDisability$(): Observable<boolean> {
     return this.newFacilityButtonDisability$.asObservable();
   }

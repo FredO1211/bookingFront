@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -8,7 +8,6 @@ import {
 import { LostDataConfirmDialogComponent } from 'src/app/modules/shared/dialog/lost-data-confirm-dialog/lost-data-confirm-dialog.component';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { ConfirmDialogStatus } from 'src/app/modules/shared/dto/config/confim-dialog-status.enum';
-import { valueIsAlreadyExistsValidator } from 'src/app/modules/shared/validators/value-is-already-exists.validator';
 import { FacilityFormConfig } from '../../dto/facility-form-config.dto';
 import { FacilityType } from '../../dto/facility-type.enum';
 import { Facility, RentedArea } from '../../model/facility-configuration.model';
@@ -29,10 +28,12 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
 
   facility: Facility;
   formGroup: FormGroup;
-  facilityFormGroup: FormGroup;
+  formArray: FormArray;
+  rentedAreaFormGroup: FormGroup;
   facilityNameControl: FormControl;
   dialogButtonConfig: ButtonConfig[];
 
+  private currentFacilityFormIndex = 0;
   private saveDisabilityFollowingService = new ButtonsDisabilityManageService();
   private addDisabilityFollowingService = new ButtonsDisabilityManageService();
 
@@ -45,36 +46,25 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.data == null) {
-      this.facility = {
-        facilityName: '',
-        facilityType: FacilityType.MULTI_RENTED_FACILITY,
-        rentedAreas: [],
-      };
-    } else {
-      this.facility = {
-        facilityName: this.data.facilityName,
-        facilityType: FacilityType.MULTI_RENTED_FACILITY,
-        rentedAreas: this.data.rentedAreas,
-      };
-    }
-
     this.facilityFormConfig =
       this.configGeneratorService.getFacilityFormConfigForHotel();
 
-    this.formGroup = FormGroupGenerator.getFormGroupForHotelForm(
+    this.formGroup = FormGroupGenerator.getFormGroupForPartlyRentedFacility(
       this.getListOfFacilities(),
-      this.getListOfRoomNames(),
-      this.facility
+      this.data
     );
 
-    this.facilityFormGroup = this.formGroup.get('facility') as FormGroup;
+    this.formArray = this.formGroup.get('rentedAreas') as FormArray;
+
+    this.rentedAreaFormGroup = this.formArray.at(
+      this.currentFacilityFormIndex
+    ) as FormGroup;
 
     this.facilityNameControl = this.formGroup.get(
       'facilityName'
     ) as FormControl;
 
-    this.addDisabilityFollowingService.initNewHook(this.facilityFormGroup);
+    this.addDisabilityFollowingService.initNewHook(this.rentedAreaFormGroup);
     this.saveDisabilityFollowingService.initNewHook(this.facilityNameControl);
 
     this.facilityButtonConfig = [
@@ -82,7 +72,7 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
         'success',
         '+ Dodaj',
         () => {
-          this.insertNewFacility(this.facilityFormGroup.value);
+          this.insertNewFacility(this.rentedAreaFormGroup.value);
         },
         this.addDisabilityFollowingService.getButtonDisability$()
       ),
@@ -99,6 +89,11 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   save() {
+    const formValue: Facility = this.formGroup.value;
+    formValue.rentedAreas = formValue.rentedAreas.slice(
+      0,
+      formValue.rentedAreas.length - 1
+    );
     this.dataService.insert(this.formGroup.value);
     this.closeDialog();
   }
@@ -113,23 +108,34 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   getFacilityNamesAsString(): string {
-    return this.facility.rentedAreas.map((f) => f.name).join(', ');
+    console.log(this.rentedAreaFormGroup.value);
+    return this.formArray.value
+      ? this.formArray.value.map((f: RentedArea) => f.name).join(', ')
+      : '';
   }
 
   insertNewFacility(facility: RentedArea | any) {
-    this.facility.rentedAreas.push(facility);
-    this.facilityFormGroup.get('name')?.reset();
-    this.facilityFormGroup
-      .get('name')
-      ?.setValidators([
-        Validators.required,
-        valueIsAlreadyExistsValidator(this.getListOfRoomNames()),
-      ]);
+    const toInsert = this.formGroup.get('rentedAreas') as FormArray;
+    FormGroupGenerator.addFacilityFormGroupToFormArray(toInsert);
+    this.currentFacilityFormIndex++;
+    this.addDisabilityFollowingService.updateHook(
+      this.getRentedAreaFormGroup()
+    );
+  }
+
+  getRentedAreaFormGroup(): FormGroup {
+    const formArray = this.formGroup.get('rentedAreas') as FormArray;
+    return formArray.at(this.currentFacilityFormIndex) as FormGroup;
   }
 
   openRentedAreaDialogComponent() {
+    const rentedAreas = this.formArray.value;
+    const rentedAreasToDisplay: RentedArea[] = rentedAreas.slice(
+      0,
+      rentedAreas.length - 1
+    );
     const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
-      data: this.facility.rentedAreas,
+      data: rentedAreasToDisplay,
       width: '950px',
     });
 
@@ -143,10 +149,6 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
       return 'Podana nazwa została już użyta!';
     }
     return 'Nieprawidłowa wartość';
-  }
-
-  private getListOfRoomNames(): string[] {
-    return this.facility.rentedAreas.map((f) => f.name);
   }
 
   private getListOfFacilities(): string[] {

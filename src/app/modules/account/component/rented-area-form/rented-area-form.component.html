@@ -13,7 +13,7 @@
           type="text"
           matInput
         />
-        <mat-error *ngIf="formGroup.get('name')?.invalid">
+        <mat-error *ngIf="formGroup?.get('name')?.invalid">
           {{ getMessageForNameControl() }}
         </mat-error>
       </mat-form-field>

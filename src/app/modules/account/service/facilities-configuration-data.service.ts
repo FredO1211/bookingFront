@@ -13,6 +13,7 @@ export class FacilitiesConfigurationDataService {
   private dataToDisplayTable = new MatTableDataSource(this.dataToDisplay);
 
   insert(toInsert: Facility) {
+    debugger;
     this.data.push(toInsert);
     this.refreshOverviewDataList();
   }
