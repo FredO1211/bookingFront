@@ -17,18 +17,17 @@ export class ActivateComponent implements OnInit {
   getButtonGroupConfig(): ButtonConfig[] {
     const configList: ButtonConfig[] = [];
     configList.push(
-      new ButtonConfig('warn', 'Anuluj', () => this.closeModal())
-    );
-    configList.push(
       new ButtonConfig('accent', 'Cofnij', () => this.scrollToPreviousPage())
     );
     configList.push(
       new ButtonConfig('primary', 'Dalej', () => this.scrollToNextPage())
     );
-    configList.push(new ButtonConfig('green', 'Zapisz', () => this.save()));
+    configList.push(new ButtonConfig('success', 'Zapisz', () => this.save()));
 
     return configList;
   }
+
+  isUserDataFormValid(state: boolean) {}
 
   save() {}
 

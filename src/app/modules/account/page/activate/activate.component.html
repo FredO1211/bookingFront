@@ -6,16 +6,18 @@
     <mat-stepper class="width__80_percent" [linear]="false">
       <mat-step>
         <ng-template matStepLabel>Dane osobowe</ng-template>
-        <facilities-overview class="form_container"></facilities-overview>
-      </mat-step>
-
-      <mat-step>
-        <ng-template matStepLabel>Dane obiektu</ng-template>
-        <company-data-form class="form_container"></company-data-form>
+        <user-data-form
+          (isValid)="isUserDataFormValid($event)"
+          class="form_container"
+        ></user-data-form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Konfiguracja obiektu</ng-template>
-        <user-data-form class="form_container"></user-data-form>
+        <facilities-overview class="form_container"></facilities-overview>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Regulamin</ng-template>
+        <company-data-form class="form_container"></company-data-form>
       </mat-step>
     </mat-stepper>
     <div class="width__80_percent">

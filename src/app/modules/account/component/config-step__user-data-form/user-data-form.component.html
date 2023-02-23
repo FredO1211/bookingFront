@@ -12,6 +12,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.name"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -27,6 +29,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.lastName"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -44,6 +48,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.city"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -59,6 +65,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.houseNumber"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -74,6 +82,7 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.flatNumber"
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -91,6 +100,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.post"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>
@@ -106,6 +117,8 @@
           name="name"
           type="text"
           matInput
+          [(ngModel)]="model.zipCode"
+          required
         />
       </mat-form-field>
     </mat-grid-tile>

@@ -128,13 +128,14 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   openRentedAreaDialogComponent() {
-    this.addDisabilityFollowingService.unfollow();
     const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
       data: this.formArray,
       width: '950px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      // this.addDisabilityFollowingService.initNewHook(this.rentedAreaFormGroup);
+    });
   }
 
   getMessageForNameControl(): string {
