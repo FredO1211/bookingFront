@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { FormArray } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { DefaultPaginatorConfig } from 'src/app/modules/shared/service/config/default-paginator-configurtator.service';
 import { ConfirmDialogManager } from 'src/app/modules/shared/service/lost-data-confirm-dialog-manager.service';
@@ -17,7 +18,7 @@ import { RentedAreaConfigurationDataService } from '../../service/data/rented-ar
   styleUrls: ['./rented-area-overview.component.scss'],
 })
 export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
-  @Input('data') _data: RentedArea[];
+  @Input('data') _data: FormArray;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   DISPLAYED_COLUMNS: string[] = [
@@ -41,7 +42,12 @@ export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataService.init(this._data);
+    const rentedAreas = this._data.value;
+    const rentedAreasToDisplay: RentedArea[] = rentedAreas.slice(
+      0,
+      rentedAreas.length - 1
+    );
+    this.dataService.init(rentedAreasToDisplay);
   }
 
   remove(index: number) {
@@ -61,6 +67,7 @@ export class RentedAreaOverviewComponent implements OnInit, AfterViewInit {
           color: 'warn',
           label: 'Usuń',
           callback: () => {
+            this._data.removeAt(index);
             this.dataService.removeByIndex(index);
             this.confirmDialogManager.close();
           },

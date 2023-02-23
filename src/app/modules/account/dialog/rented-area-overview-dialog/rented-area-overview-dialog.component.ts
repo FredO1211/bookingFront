@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormArray } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
 import { RentedArea } from '../../model/facility-configuration.model';
@@ -10,7 +11,7 @@ import { RentedArea } from '../../model/facility-configuration.model';
 })
 export class RentedAreaOverviewDialogComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public _data: RentedArea[],
+    @Inject(MAT_DIALOG_DATA) public _data: FormArray,
     private ownReferences: MatDialogRef<RentedAreaOverviewDialogComponent>
   ) {}
 

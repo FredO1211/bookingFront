@@ -108,7 +108,6 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
   }
 
   getFacilityNamesAsString(): string {
-    console.log(this.rentedAreaFormGroup.value);
     return this.formArray.value
       ? this.formArray.value.map((f: RentedArea) => f.name).join(', ')
       : '';
@@ -125,17 +124,13 @@ export class PartlyRentedFacilityFormDialogComponent implements OnInit {
 
   getRentedAreaFormGroup(): FormGroup {
     const formArray = this.formGroup.get('rentedAreas') as FormArray;
-    return formArray.at(this.currentFacilityFormIndex) as FormGroup;
+    return formArray.at(formArray.length - 1) as FormGroup;
   }
 
   openRentedAreaDialogComponent() {
-    const rentedAreas = this.formArray.value;
-    const rentedAreasToDisplay: RentedArea[] = rentedAreas.slice(
-      0,
-      rentedAreas.length - 1
-    );
+    this.addDisabilityFollowingService.unfollow();
     const dialogRef = this.dialog.open(RentedAreaOverviewDialogComponent, {
-      data: rentedAreasToDisplay,
+      data: this.formArray,
       width: '950px',
     });
 
