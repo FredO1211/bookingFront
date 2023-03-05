@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { UserApi } from './services/user-api';
+import { UserApi } from './user/user-api';
 
 @NgModule({
   declarations: [],

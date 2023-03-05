@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserApi } from '../../core/api/services/user-api';
+import { UserApi } from '../../core/api/user/user-api';
 import { LoggerService } from '../../core/components/logger/service/logger.service';
 import { RegistrationDto } from '../component/registation-form/io/register-form-data';
 import { LoginModule } from '../login.module';

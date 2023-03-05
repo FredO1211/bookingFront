@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { FormGroupHolder } from './services/form-group-holder.service';
 
 @Component({
   selector: 'app-activate',
   templateUrl: './activate.component.html',
   styleUrls: ['./activate.component.scss'],
+  providers: [FormGroupHolder],
 })
 export class ActivateComponent implements OnInit {
   toggle = false;
 
-  constructor(public dialog: MatDialog) {}
+  public userDataFormGroup: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(public dialog: MatDialog, private formHolder: FormGroupHolder) {}
+
+  ngOnInit(): void {
+    this.userDataFormGroup = this.formHolder.getUserDataFormGroup();
+  }
 
   getButtonGroupConfig(): ButtonConfig[] {
     const configList: ButtonConfig[] = [];
@@ -26,6 +33,8 @@ export class ActivateComponent implements OnInit {
 
     return configList;
   }
+
+  activate() {}
 
   isUserDataFormValid(state: boolean) {}
 

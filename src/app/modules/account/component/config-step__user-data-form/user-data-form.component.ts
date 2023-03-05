@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { emptyUserData } from 'src/app/modules/shared/service/empty-object-factory.service';
-import { UserData } from './io/user-data.dto';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'user-data-form',
@@ -8,13 +7,11 @@ import { UserData } from './io/user-data.dto';
   styleUrls: ['./user-data-form.component.scss'],
 })
 export class UserDataFormComponent implements OnInit {
-  model: UserData;
+  @Input('data') _data: FormGroup;
 
   @Output('isValid') isFormValidEmitter = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.model = emptyUserData();
-  }
+  ngOnInit(): void {}
 }
