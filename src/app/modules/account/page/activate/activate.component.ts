@@ -2,20 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ButtonConfig } from 'src/app/modules/shared/dto/config/button-group-config';
+import { DataService } from './services/data.service';
 import { FormGroupHolder } from './services/form-group-holder.service';
 
 @Component({
   selector: 'app-activate',
   templateUrl: './activate.component.html',
   styleUrls: ['./activate.component.scss'],
-  providers: [FormGroupHolder],
+  providers: [FormGroupHolder, DataService],
 })
 export class ActivateComponent implements OnInit {
   toggle = false;
 
   public userDataFormGroup: FormGroup;
 
-  constructor(public dialog: MatDialog, private formHolder: FormGroupHolder) {}
+  constructor(
+    public dialog: MatDialog,
+    private formHolder: FormGroupHolder,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
     this.userDataFormGroup = this.formHolder.getUserDataFormGroup();
@@ -34,7 +39,9 @@ export class ActivateComponent implements OnInit {
     return configList;
   }
 
-  activate() {}
+  activate() {
+    this.dataService.activateAccount();
+  }
 
   isUserDataFormValid(state: boolean) {}
 

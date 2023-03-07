@@ -1,4 +1,5 @@
 export interface UserData {
+  login: string;
   name: string;
   lastName: string;
   city: string;

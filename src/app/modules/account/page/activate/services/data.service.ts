@@ -21,5 +21,7 @@ export class DataService {
       userData: userData,
       facilities: facilities,
     };
+
+    console.log(model);
   }
 }

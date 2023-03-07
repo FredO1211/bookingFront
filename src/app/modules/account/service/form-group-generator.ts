@@ -52,7 +52,7 @@ export class FormGroupGenerator {
           element ? element.rentedAreaType : '',
           Validators.required
         ),
-        deafultPrice: new FormControl(element ? element.deafultPrice : null),
+        deafultPrice: new FormControl(element ? element.defultPrice : null),
         maxGuestCount: new FormControl(element ? element.maxGuestCount : 0, [
           Validators.required,
           Validators.min(1),
@@ -77,7 +77,7 @@ export class FormGroupGenerator {
         Validators.required
       ),
       deafultPrice: new FormControl(
-        facility.rentedAreas[0] ? facility.rentedAreas[0].deafultPrice : null
+        facility.rentedAreas[0] ? facility.rentedAreas[0].defultPrice : null
       ),
       maxGuestCount: new FormControl(
         facility.rentedAreas[0] ? facility.rentedAreas[0].maxGuestCount : 0,
